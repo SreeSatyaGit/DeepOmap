@@ -1,29 +1,42 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="relative overflow-hidden">
-      {/* Header */}
-      <header className="w-full bg-[#001f3f] bg-opacity-80 text-white p-6 fixed top-0 z-20">
+      {/* Header with improved styling and responsiveness */}
+      <header className="w-full bg-gradient-to-r from-[#001f3f] to-[#003366] text-white p-4 md:p-6 fixed top-0 z-20 shadow-lg backdrop-blur-sm bg-opacity-90">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Image src="/logo/logoDeepOmap.png" alt="DeepOMAP Logo" width={50} height={50} />
-            <h1 className="text-2xl font-bold">DeepOMAP</h1>
+          <div className="flex items-center gap-3">
+            <Image src="/logo/logoDeepOmap.png" alt="DeepOMAP Logo" width={50} height={50} className="transition-transform duration-300 hover:scale-110" />
+            <h1 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-[#a3e0ff]">DeepOMAP</h1>
           </div>
-          <nav>
+          <nav className="hidden md:block">
             <ul className="flex space-x-6">
-              <li><a href="#about" className="hover:underline">About</a></li>
-              <li><a href="#team" className="hover:underline">Team</a></li>
-              <li><a href="#tool" className="hover:underline">AI Tool</a></li>
-              <li><a href="#research" className="hover:underline">Research</a></li>
-              <li><a href="#contact" className="hover:underline">Contact</a></li>
+              {['About', 'Team', 'AI Tool', 'Research', 'Contact'].map((item) => (
+                <li key={item}>
+                  <Link 
+                    href={`#${item.toLowerCase().replace(' ', '')}`} 
+                    className="relative font-medium before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
+                    before:bottom-0 before:left-0 before:bg-[#50C878] before:scale-x-0 before:origin-top-right
+                    before:transition before:duration-300 hover:before:scale-x-100 hover:before:origin-top-left"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
+          <button className="md:hidden text-white" aria-label="Toggle Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
         </div>
       </header>
 
-      {/* Hero Section with limited-height background video */}
-      <section className="relative h-[75vh] overflow-hidden pt-20">
+      {/* Hero Section with overlay gradient and animation */}
+      <section className="relative h-screen overflow-hidden pt-20">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
           src="/videos/BGV.mp4"
@@ -32,105 +45,443 @@ export default function Home() {
           muted
           playsInline
         />
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#fffaf0] drop-shadow-lg">
-            Revolutionizing Cancer Care with AI
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001f3f]/70 to-transparent z-0"></div>
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 animate-fade-in">
+          <h2 className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg leading-tight">
+            <span className="block">Revolutionizing Cancer Care</span>
+            <span className="block mt-2 text-[#50C878]">with Artificial Intelligence</span>
           </h2>
-          <p className="mt-6 text-lg md:text-xl text-gray-200 max-w-2xl drop-shadow-lg">
-            Our AI-powered diagnostic tool assists oncologists in early detection and personalized treatment planning.
+          <p className="mt-6 text-lg md:text-xl text-gray-200 max-w-2xl drop-shadow-lg font-light">
+            Our AI-powered diagnostic tool assists oncologists in early detection and personalized treatment planning for improved patient outcomes.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-6">
-            <a href="#contact" className="bg-[#50C878] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#45b76a] transition">
-              Request a Demo
+          <div className="mt-10 flex flex-col sm:flex-row gap-6">
+            <a 
+              href="#contact" 
+              className="group relative bg-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#50C878]/30"
+            >
+              <span className="relative z-10">Request a Demo</span>
+              <span className="absolute inset-0 bg-[#45b76a] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </a>
-            <a href="#about" className="border border-[#50C878] text-[#50C878] px-8 py-4 rounded-full font-semibold hover:bg-[#50C878] hover:text-white transition">
-              Learn More
+            <a 
+              href="#about" 
+              className="group relative border-2 border-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg"
+            >
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Learn More</span>
+              <span className="absolute inset-0 bg-[#50C878] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </a>
           </div>
+        </div>
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+          <a href="#about" aria-label="Scroll Down">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </a>
         </div>
       </section>
 
       {/* Page Content */}
       <main className="relative z-10">
-        {/* About Section */}
-        <section id="about" className="py-20 bg-[#fffaf0]">
-          <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
-            <div className="md:w-1/2">
-              <h3 className="text-3xl font-bold mb-4">About DeepOMAP</h3>
-              <p className="text-gray-700">
-                DeepOMAP leverages advanced AI to revolutionize oncology diagnostics—delivering earlier detection and tailored treatment insights to improve patient outcomes.
-              </p>
+        {/* About Section with offset cards and animations */}
+        <section id="about" className="py-24 bg-[#f8f9fa]">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Our Mission</h2>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4">About DeepOMAP</h3>
+              <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
             </div>
-            <div className="md:w-1/2">
-              <Image src="/images/about.jpg" alt="About DeepOMAP" width={600} height={400} className="rounded-lg shadow-lg" />
+            
+            <div className="flex flex-col md:flex-row items-center gap-12">
+              <div className="md:w-1/2 transition-all duration-500 hover:translate-y-[-5px]">
+                <div className="bg-white rounded-xl shadow-xl overflow-hidden">
+                  <Image 
+                    src="/images/about.jpg" 
+                    alt="About DeepOMAP" 
+                    width={600} 
+                    height={400} 
+                    className="w-full h-64 object-cover object-center" 
+                  />
+                </div>
+              </div>
+              <div className="md:w-1/2 space-y-4">
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  DeepOMAP leverages advanced AI to revolutionize oncology diagnostics, delivering earlier detection and tailored treatment insights to improve patient outcomes.
+                </p>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  Our cutting-edge technologies integrate seamlessly with existing medical workflows, providing oncologists with powerful tools to make faster, more accurate decisions.
+                </p>
+                <div className="grid grid-cols-2 gap-4 mt-6">
+                  <div className="bg-white p-4 rounded-lg shadow-md">
+                    <div className="text-[#50C878] text-3xl font-bold mb-2">94%</div>
+                    <p className="text-gray-600">Detection Accuracy</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg shadow-md">
+                    <div className="text-[#50C878] text-3xl font-bold mb-2">30%</div>
+                    <p className="text-gray-600">Faster Diagnosis</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Team Section */}
-        <section id="team" className="py-20">
+        {/* Team Section with hover effects */}
+        <section id="team" className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
-            <h3 className="text-3xl font-bold mb-8 text-center">Meet Our Team</h3>
+            <div className="text-center mb-12">
+              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Expert Leadership</h2>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h3>
+              <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Our multidisciplinary team combines expertise in oncology, artificial intelligence, and software engineering.
+              </p>
+            </div>
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {['Jane Doe','John Smith','Emily White'].map((name, idx) => (
-                <div key={idx} className="text-center">
-                  <Image src={`/images/team${idx+1}.jpg`} alt={name} width={240} height={240} className="rounded-full mx-auto" />
-                  <h4 className="mt-4 font-semibold text-xl">{name}</h4>
-                  <p className="text-gray-600">{idx === 0 ? 'Chief Medical Officer' : idx === 1 ? 'CTO & Lead Data Scientist' : 'Lead Engineer'}</p>
+              {[
+                { name: 'Jane Doe', title: 'Chief Medical Officer', bio: 'Board-certified oncologist with 15+ years of clinical experience.' },
+                { name: 'John Smith', title: 'CTO & Lead Data Scientist', bio: 'PhD in AI with focus on medical imaging analysis algorithms.' },
+                { name: 'Emily White', title: 'Lead Engineer', bio: 'Engineering leader specializing in healthcare technology solutions.' }
+              ].map((member, idx) => (
+                <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 overflow-hidden bg-white">
+                  <div className="aspect-square overflow-hidden">
+                    <Image 
+                      src={`/images/team${idx+1}.jpg`} 
+                      alt={member.name} 
+                      width={400} 
+                      height={400} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h4 className="font-bold text-xl">{member.name}</h4>
+                    <p className="text-[#50C878] font-medium mb-2">{member.title}</p>
+                    <p className="text-gray-600 text-sm">{member.bio}</p>
+                    <div className="flex mt-4 space-x-3">
+                      {['LinkedIn', 'Twitter', 'Email'].map((social, i) => (
+                        <a 
+                          key={i}
+                          href="#" 
+                          className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#50C878] hover:text-white transition-colors duration-300"
+                        >
+                          <span className="sr-only">{social}</span>
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM5.5 8.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM10 15a5 5 0 100-10 5 5 0 000 10z" clipRule="evenodd" />
+                          </svg>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Tool Section */}
-        <section id="tool" className="py-20 bg-[#f9fafb]">
-          <div className="max-w-6xl mx-auto px-6 text-center">
-            <h3 className="text-3xl font-bold mb-4">Our AI Tool</h3>
-            <p className="mb-8 text-gray-700">
-              DeepOMAP’s platform analyzes medical imaging to detect tumors, predict progression, and recommend personalized treatments—streamlining oncology workflows.
-            </p>
-            <Image src="/images/tool-dashboard.png" alt="AI Tool Dashboard" width={800} height={450} className="rounded-lg shadow-lg mx-auto" />
-          </div>
-        </section>
-
-        {/* Research Section */}
-        <section id="research" className="py-20">
+        {/* Tool Section with tabbed interface */}
+        <section id="aitool" className="py-24 bg-[#f8f9fa]">
           <div className="max-w-6xl mx-auto px-6">
-            <h3 className="text-3xl font-bold mb-8 text-center">Research & Validation</h3>
-            <ul className="space-y-6">
-              <li className="border-l-4 border-[#50C878] pl-4">
-                <h4 className="font-semibold">Early Detection Study</h4>
-                <p className="text-gray-600">Jan 2025 — 15% improvement in detection accuracy.</p>
-              </li>
-              <li className="border-l-4 border-[#50C878] pl-4">
-                <h4 className="font-semibold">Clinical Workflow Integration</h4>
-                <p className="text-gray-600">Nov 2024 — 30% faster diagnosis turnaround time.</p>
-              </li>
-            </ul>
+            <div className="text-center mb-12">
+              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">AI Technology</h2>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4">Our AI Tool</h3>
+              <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                DeepOMAP's platform analyzes medical imaging to detect tumors, predict progression, and recommend personalized treatments.
+              </p>
+            </div>
+            
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-2/5 bg-gradient-to-br from-[#001f3f] to-[#003366] p-8 text-white">
+                  <h4 className="text-2xl font-bold mb-6">Key Features</h4>
+                  <ul className="space-y-6">
+                    {[
+                      { title: 'Advanced Detection', desc: 'Identify early-stage tumors with 94% accuracy' },
+                      { title: 'Treatment Recommendations', desc: 'AI-assisted personalized treatment planning' },
+                      { title: 'Progression Analysis', desc: 'Predict cancer progression pathways' },
+                      { title: 'Integration', desc: 'Seamless workflow with existing hospital systems' }
+                    ].map((feature, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <div className="bg-[#50C878] p-2 rounded-full mr-4 mt-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h5 className="font-semibold">{feature.title}</h5>
+                          <p className="text-gray-300 text-sm">{feature.desc}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-8">
+                    <a 
+                      href="#contact" 
+                      className="inline-block bg-[#50C878] text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-all duration-300"
+                    >
+                      Schedule a Demo
+                    </a>
+                  </div>
+                </div>
+                <div className="md:w-3/5 p-4">
+                  <div className="relative h-full rounded-xl overflow-hidden border border-gray-200">
+                    <Image 
+                      src="/images/tool-dashboard.png" 
+                      alt="AI Tool Dashboard" 
+                      fill
+                      className="object-cover" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#000]/50 to-transparent flex items-end">
+                      <div className="p-6 text-white">
+                        <h4 className="text-xl font-bold">Interactive Dashboard</h4>
+                        <p className="text-gray-200 text-sm">
+                          Our intuitive interface puts powerful AI tools at oncologists' fingertips.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="py-20 bg-[#fffaf0]">
-          <div className="max-w-4xl mx-auto px-6">
-            <h3 className="text-3xl font-bold mb-6 text-center">Contact Us</h3>
-            <form className="grid grid-cols-1 gap-6">
-              {['Name','Email','Organization','Message'].map((field, i) => (
-                <input key={i} type={field==='Email'?'email':'text'} placeholder={field} className="p-4 border rounded-lg w-full" required />
-              ))}
-              <button type="submit" className="bg-[#50C878] text-white py-3 rounded-full font-semibold hover:bg-[#45b76a] transition">Submit</button>
-            </form>
+        {/* Research Section with timeline */}
+        <section id="research" className="py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Evidence-Based</h2>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4">Research & Validation</h3>
+              <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Our technology is backed by rigorous research and clinical validation.
+              </p>
+            </div>
+            
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute h-full w-0.5 bg-gray-200 left-1/2 transform -translate-x-1/2"></div>
+              
+              <div className="space-y-16">
+                {[
+                  { 
+                    title: 'Early Detection Study', 
+                    date: 'Jan 2025', 
+                    result: '15% improvement in detection accuracy',
+                    description: 'Multicenter study across 5 major oncology centers with 1,200+ patients.',
+                    align: 'right'
+                  },
+                  { 
+                    title: 'Clinical Workflow Integration', 
+                    date: 'Nov 2024', 
+                    result: '30% faster diagnosis turnaround time',
+                    description: 'Implementation study at University Medical Center showing significant time savings.',
+                    align: 'left'
+                  },
+                  { 
+                    title: 'Treatment Recommendation Validation', 
+                    date: 'Sep 2024', 
+                    result: '22% improvement in treatment matching',
+                    description: 'Comparison with expert panel recommendations across diverse cancer types.',
+                    align: 'right'
+                  }
+                ].map((item, idx) => (
+                  <div key={idx} className="relative flex items-center justify-between">
+                    <div className={`w-5/12 ${item.align === 'left' ? '' : 'order-1 text-right'}`}>
+                      <div className={`bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg ${item.align === 'left' ? 'mr-10' : 'ml-10'}`}>
+                        <span className="inline-block px-3 py-1 rounded-full bg-[#f8f9fa] text-[#50C878] text-sm font-medium mb-2">
+                          {item.date}
+                        </span>
+                        <h4 className="text-xl font-bold">{item.title}</h4>
+                        <p className="text-[#50C878] font-medium">{item.result}</p>
+                        <p className="text-gray-600 mt-2 text-sm">{item.description}</p>
+                      </div>
+                    </div>
+                    <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                      <div className="w-8 h-8 bg-[#50C878] rounded-full border-4 border-white shadow"></div>
+                    </div>
+                    <div className={`w-5/12 ${item.align === 'right' ? '' : 'order-1 text-right'}`}></div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="text-center mt-16">
+                <a 
+                  href="#" 
+                  className="inline-flex items-center text-[#50C878] font-medium hover:underline"
+                >
+                  View all research publications
+                  <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="bg-gray-100 bg-opacity-80 text-gray-600 p-6">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center">
-            <p className="text-sm">&copy; {new Date().getFullYear()} DeepOMAP. All rights reserved.</p>
-            <div className="flex space-x-4 mt-4 sm:mt-0">
-              <a href="#privacy" className="text-sm hover:underline">Privacy Policy</a>
-              <a href="#terms" className="text-sm hover:underline">Terms of Service</a>
+        {/* Contact Section with improved form */}
+        <section id="contact" className="py-24 bg-[#f8f9fa]">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex flex-col md:flex-row items-start gap-12">
+              <div className="md:w-1/2">
+                <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Get In Touch</h2>
+                <h3 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h3>
+                <div className="h-1 w-20 bg-[#50C878] mb-6"></div>
+                <p className="text-gray-700 mb-8">
+                  Interested in learning more about DeepOMAP? Our team is ready to answer your questions and schedule a demonstration.
+                </p>
+                
+                <div className="space-y-6">
+                  {[
+                    { icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z', title: 'Phone', detail: '+1 (555) 123-4567' },
+                    { icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', title: 'Email', detail: 'info@deepomap.com' },
+                    { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', title: 'Address', detail: '123 Innovation Dr, San Francisco, CA' }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-start">
+                      <div className="bg-[#50C878]/10 p-3 rounded-full mr-4">
+                        <svg className="w-6 h-6 text-[#50C878]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">{item.title}</h4>
+                        <p className="text-gray-600">{item.detail}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="md:w-1/2 bg-white rounded-xl shadow-lg p-8">
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                      <input 
+                        type="text" 
+                        placeholder="John Doe" 
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
+                        required 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                      <input 
+                        type="email" 
+                        placeholder="john@example.com" 
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
+                        required 
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Organization</label>
+                    <input 
+                      type="text" 
+                      placeholder="Medical Center Name" 
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                    <textarea 
+                      rows={4} 
+                      placeholder="How can we help you?" 
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
+                      required
+                    ></textarea>
+                  </div>
+                  
+                  <button 
+                    type="submit" 
+                    className="w-full bg-[#50C878] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#45b76a] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#50C878]"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer with improved layout */}
+        <footer className="bg-[#001f3f] text-white pt-16 pb-8">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+              <div className="col-span-1 md:col-span-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <Image src="/logo/logoDeepOmap.png" alt="DeepOMAP Logo" width={40} height={40} />
+                  <h4 className="text-xl font-bold">DeepOMAP</h4>
+                </div>
+                <p className="text-gray-300 mb-6 max-w-md">
+                  Revolutionizing cancer care through AI-powered diagnostics and personalized treatment planning.
+                </p>
+                <div className="flex space-x-4">
+                  {['Twitter', 'LinkedIn', 'Facebook', 'Instagram'].map((social, idx) => (
+                    <a 
+                      key={idx}
+                      href="#" 
+                      className="w-10 h-10 rounded-full bg-[#003366] flex items-center justify-center hover:bg-[#50C878] transition-colors duration-300"
+                    >
+                      <span className="sr-only">{social}</span>
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM5.5 8.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM10 15a5 5 0 100-10 5 5 0 000 10z" clipRule="evenodd" />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul className="space-y-2">
+                  {['About', 'Team', 'AI Tool', 'Research', 'Contact', 'Blog', 'Careers'].map((link, idx) => (
+                    <li key={idx}>
+                      <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-gray-300 hover:text-[#50C878] transition-colors duration-300">
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-semibold mb-4">Resources</h4>
+                <ul className="space-y-2">
+                  {['FAQs', 'Privacy Policy', 'Terms of Service', 'Support', 'Documentation'].map((link, idx) => (
+                    <li key={idx}>
+                      <a href="#" className="text-gray-300 hover:text-[#50C878] transition-colors duration-300">
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6">
+                  <a 
+                    href="#contact" 
+                    className="inline-flex items-center text-[#50C878] font-medium hover:underline"
+                  >
+                    Subscribe to newsletter
+                    <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div className="border-t border-gray-800 pt-8">
+              <div className="flex flex-col md:flex-row justify-between items-center">
+                <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} DeepOMAP. All rights reserved.</p>
+                <div className="flex space-x-6 mt-4 md:mt-0">
+                  <a href="#" className="text-gray-400 text-sm hover:text-[#50C878]">Privacy Policy</a>
+                  <a href="#" className="text-gray-400 text-sm hover:text-[#50C878]">Terms of Service</a>
+                  <a href="#" className="text-gray-400 text-sm hover:text-[#50C878]">Accessibility</a>
+                </div>
+              </div>
             </div>
           </div>
         </footer>
