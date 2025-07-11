@@ -82,35 +82,39 @@ export default function Home() {
 
       {/* Page Content */}
       <main className="relative z-10">
-        {/* About Section with offset cards and animations */}
+        {/* About Section with properly aligned thumbnail image */}
         <section id="about" className="py-24 bg-[#f8f9fa]">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Our Mission</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">About DeepOMAP</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">About DeepOMAP</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
             </div>
             
             <div className="flex flex-col md:flex-row items-center gap-12">
-              <div className="md:w-1/2 transition-all duration-500 hover:translate-y-[-5px]">
+              <div className="md:w-[60%] transition-all duration-500 hover:translate-y-[-5px]">
                 <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-                  <Image 
-                    src="/images/about.jpg" 
-                    alt="About DeepOMAP" 
-                    width={600} 
-                    height={400} 
-                    className="w-full h-64 object-cover object-center" 
-                  />
+                  {/* Fixed thumbnail image with proper aspect ratio and alignment */}
+                  <div className="w-full h-80 relative">
+                    <Image 
+                      src="/images/thumbnail_Image1.png" 
+                      alt="About DeepOMAP" 
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="md:w-1/2 space-y-4">
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  DeepOMAP leverages advanced AI to revolutionize oncology diagnostics, delivering earlier detection and tailored treatment insights to improve patient outcomes.
-                </p>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  Our cutting-edge technologies integrate seamlessly with existing medical workflows, providing oncologists with powerful tools to make faster, more accurate decisions.
-                </p>
-                <div className="grid grid-cols-2 gap-4 mt-6">
+              </div>  
+              <div className="md:w-1/2 space-y-6">
+                {/* Placeholder for Our Mission DeepOMAP content */}
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                  <p className="text-gray-700 text-lg leading-relaxed">
+                    At DeepOMAP, we're committed to transforming cancer diagnosis and treatment by reducing turnaround times from weeks to mere hours. Powered by cutting-edge AI and single-cell sequencing, our platform delivers early, accurate predictions of drug resistance—empowering oncologists to make timely, life-saving decisions. Rooted in Maine, our interdisciplinary team innovates solutions that overcome the unique challenges of rural healthcare, bringing advanced precision diagnostics directly to those who need them most.
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white p-4 rounded-lg shadow-md">
                     <div className="text-[#50C878] text-3xl font-bold mb-2">94%</div>
                     <p className="text-gray-600">Detection Accuracy</p>
@@ -130,7 +134,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Expert Leadership</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Meet Our Team</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Our multidisciplinary team combines expertise in oncology, artificial intelligence, and software engineering.
@@ -154,7 +158,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="p-6">
-                    <h4 className="font-bold text-xl">{member.name}</h4>
+                    <h4 className="font-bold text-xl text-gray-900">{member.name}</h4>
                     <p className="text-[#50C878] font-medium mb-2">{member.title}</p>
                     <p className="text-gray-600 text-sm">{member.bio}</p>
                     <div className="flex mt-4 space-x-3">
@@ -178,68 +182,54 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Tool Section with tabbed interface */}
+        {/* Tool Section with properly aligned cell landscape image */}
         <section id="aitool" className="py-24 bg-[#f8f9fa]">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">AI Technology</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">Our AI Tool</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our AI Tool</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 DeepOMAP's platform analyzes medical imaging to detect tumors, predict progression, and recommend personalized treatments.
               </p>
             </div>
-            
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-2/5 bg-gradient-to-br from-[#001f3f] to-[#003366] p-8 text-white">
-                  <h4 className="text-2xl font-bold mb-6">Key Features</h4>
-                  <ul className="space-y-6">
-                    {[
-                      { title: 'Advanced Detection', desc: 'Identify early-stage tumors with 94% accuracy' },
-                      { title: 'Treatment Recommendations', desc: 'AI-assisted personalized treatment planning' },
-                      { title: 'Progression Analysis', desc: 'Predict cancer progression pathways' },
-                      { title: 'Integration', desc: 'Seamless workflow with existing hospital systems' }
-                    ].map((feature, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <div className="bg-[#50C878] p-2 rounded-full mr-4 mt-1">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        <div>
-                          <h5 className="font-semibold">{feature.title}</h5>
-                          <p className="text-gray-300 text-sm">{feature.desc}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-8">
-                    <a 
-                      href="#contact" 
-                      className="inline-block bg-[#50C878] text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-all duration-300"
-                    >
-                      Schedule a Demo
-                    </a>
-                  </div>
-                </div>
-                <div className="md:w-3/5 p-4">
-                  <div className="relative h-full rounded-xl overflow-hidden border border-gray-200">
-                    <Image 
-                      src="/images/tool-dashboard.png" 
-                      alt="AI Tool Dashboard" 
-                      fill
-                      className="object-cover" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#000]/50 to-transparent flex items-end">
-                      <div className="p-6 text-white">
-                        <h4 className="text-xl font-bold">Interactive Dashboard</h4>
-                        <p className="text-gray-200 text-sm">
-                          Our intuitive interface puts powerful AI tools at oncologists' fingertips.
-                        </p>
+
+            <div className="flex flex-col lg:flex-row gap-8 items-center bg-white rounded-2xl shadow-xl p-8">
+              {/* Key Features */}
+              <div className="w-full lg:w-1/2">
+                <h4 className="text-2xl font-bold text-[#001f3f] mb-6">Key Features</h4>
+                <ul className="space-y-6">
+                  {[
+                    { title: 'Advanced Detection', desc: 'Identify early-stage tumors with 94% accuracy' },
+                    { title: 'Treatment Recommendations', desc: 'AI-assisted personalized treatment planning' },
+                    { title: 'Progression Analysis', desc: 'Predict cancer progression pathways' },
+                    { title: 'Integration', desc: 'Seamless workflow with existing hospital systems' }
+                  ].map((feature, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <div className="bg-[#50C878] p-2 rounded-full mr-4 mt-1">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
                       </div>
-                    </div>
-                  </div>
+                      <div>
+                        <h5 className="font-semibold text-gray-800">{feature.title}</h5>
+                        <p className="text-gray-600 text-sm">{feature.desc}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Cell Landscape Image */}
+              <div className="w-full lg:w-[70%]">
+                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden shadow-md">
+                  <Image 
+                    src="/images/Cell Landscape-1.png" 
+                    alt="Cell Landscape Visualization" 
+                    fill
+                    className="object-contain object-center p-4"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
               </div>
             </div>
@@ -251,7 +241,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Evidence-Based</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">Research & Validation</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Research & Validation</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Our technology is backed by rigorous research and clinical validation.
@@ -292,7 +282,7 @@ export default function Home() {
                         <span className="inline-block px-3 py-1 rounded-full bg-[#f8f9fa] text-[#50C878] text-sm font-medium mb-2">
                           {item.date}
                         </span>
-                        <h4 className="text-xl font-bold">{item.title}</h4>
+                        <h4 className="text-xl font-bold text-gray-900">{item.title}</h4>
                         <p className="text-[#50C878] font-medium">{item.result}</p>
                         <p className="text-gray-600 mt-2 text-sm">{item.description}</p>
                       </div>
@@ -326,7 +316,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-start gap-12">
               <div className="md:w-1/2">
                 <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Get In Touch</h2>
-                <h3 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h3>
+                <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Contact Us</h3>
                 <div className="h-1 w-20 bg-[#50C878] mb-6"></div>
                 <p className="text-gray-700 mb-8">
                   Interested in learning more about DeepOMAP? Our team is ready to answer your questions and schedule a demonstration.
@@ -450,7 +440,7 @@ export default function Home() {
               
               <div>
                 <h4 className="text-lg font-semibold mb-4">Resources</h4>
-                <ul className="space-y-2">
+                <ul className="space-y-2">            
                   {['FAQs', 'Privacy Policy', 'Terms of Service', 'Support', 'Documentation'].map((link, idx) => (
                     <li key={idx}>
                       <a href="#" className="text-gray-300 hover:text-[#50C878] transition-colors duration-300">
