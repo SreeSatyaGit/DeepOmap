@@ -143,17 +143,20 @@ export default function Home() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
-                { name: 'Jane Doe', title: 'Chief Medical Officer', bio: 'Board-certified oncologist with 15+ years of clinical experience.' },
-                { name: 'John Smith', title: 'CTO & Lead Data Scientist', bio: 'PhD in AI with focus on medical imaging analysis algorithms.' },
-                { name: 'Emily White', title: 'Lead Engineer', bio: 'Engineering leader specializing in healthcare technology solutions.' }
+                { name: 'Kiran Vanaja', title: '', bio: 'Research Assitant Professor at Roux Institute at Northeastern University' },
+                { name: 'Michela Reagan', title: '', bio: 'MaineHealth Institute of Research' },
+                { name: 'Radha Mukherjee', title: '', bio: 'Associate Research Scientist Memorial Slon kettering' },
+                { name: 'Logan Schwartz', title: '', bio: 'Post-Doctoral at Roux Institute at Northeastern University ' },
+                { name: 'Satya Nandivada', title: '', bio: 'MS Northeastern University' }
+            
               ].map((member, idx) => (
                 <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 overflow-hidden bg-white">
                   <div className="aspect-square overflow-hidden">
                     <Image 
-                      src={`/images/team${idx+1}.jpg`} 
+                      src={`/images/team/team${idx+1}.png`} 
                       alt={member.name} 
-                      width={400} 
-                      height={400} 
+                      width={500} 
+                      height={500} 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                     />
                   </div>
@@ -240,8 +243,8 @@ export default function Home() {
         <section id="research" className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Evidence-Based</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Research & Validation</h3>
+  
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Journey</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Our technology is backed by rigorous research and clinical validation.
@@ -255,24 +258,23 @@ export default function Home() {
               <div className="space-y-16">
                 {[
                   { 
-                    title: 'Early Detection Study', 
+                    title: 'DeepOMAP Founded', 
                     date: 'Jan 2025', 
-                    result: '15% improvement in detection accuracy',
-                    description: 'Multicenter study across 5 major oncology centers with 1,200+ patients.',
+                    result: 'Registered as Maine-based LLC',
                     align: 'right'
                   },
                   { 
-                    title: 'Clinical Workflow Integration', 
-                    date: 'Nov 2024', 
-                    result: '30% faster diagnosis turnaround time',
-                    description: 'Implementation study at University Medical Center showing significant time savings.',
+                    title: 'Selected for MIT NSF I-Corps Program', 
+                    date: 'Mar 2025', 
+                    result: 'Customer discovery and validation',
+                    description: 'Developed initial prototype and conducted user interviews.',
                     align: 'left'
                   },
                   { 
-                    title: 'Treatment Recommendation Validation', 
-                    date: 'Sep 2024', 
-                    result: '22% improvement in treatment matching',
-                    description: 'Comparison with expert panel recommendations across diverse cancer types.',
+                    title: 'Early Minimum Viable Product (MVP) Launched', 
+                    date: 'May 2024', 
+                    result: 'Validating and improving AI algorithms',
+                    description: 'Developed initial foundational model for cancer detection and explainable AI.',
                     align: 'right'
                   }
                 ].map((item, idx) => (
@@ -319,14 +321,13 @@ export default function Home() {
                 <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Contact Us</h3>
                 <div className="h-1 w-20 bg-[#50C878] mb-6"></div>
                 <p className="text-gray-700 mb-8">
-                  Interested in learning more about DeepOMAP? Our team is ready to answer your questions and schedule a demonstration.
+                  Interested in learning more about DeepOMAP? 
                 </p>
                 
                 <div className="space-y-6">
                   {[
-                    { icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z', title: 'Phone', detail: '+1 (555) 123-4567' },
-                    { icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', title: 'Email', detail: 'info@deepomap.com' },
-                    { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', title: 'Address', detail: '123 Innovation Dr, San Francisco, CA' }
+                    // { icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', title: 'Email', detail: 'info@deepomap.com' },
+                    // { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', title: 'Address', detail: '123 Innovation Dr, San Francisco, CA' }
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-start">
                       <div className="bg-[#50C878]/10 p-3 rounded-full mr-4">
@@ -334,10 +335,10 @@ export default function Home() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                         </svg>
                       </div>
-                      <div>
+                      {/* <div>
                         <h4 className="font-semibold text-gray-900">{item.title}</h4>
                         <p className="text-gray-600">{item.detail}</p>
-                      </div>
+                      </div> */}
                     </div>
                   ))}
                 </div>
@@ -402,27 +403,9 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
               <div className="col-span-1 md:col-span-2">
-                <div className="flex items-center gap-3 mb-4">
-                  <Image src="/logo/logoDeepOmap.png" alt="DeepOMAP Logo" width={40} height={40} />
-                  <h4 className="text-xl font-bold">DeepOMAP</h4>
-                </div>
                 <p className="text-gray-300 mb-6 max-w-md">
-                  Revolutionizing cancer care through AI-powered diagnostics and personalized treatment planning.
                 </p>
-                <div className="flex space-x-4">
-                  {['Twitter', 'LinkedIn', 'Facebook', 'Instagram'].map((social, idx) => (
-                    <a 
-                      key={idx}
-                      href="#" 
-                      className="w-10 h-10 rounded-full bg-[#003366] flex items-center justify-center hover:bg-[#50C878] transition-colors duration-300"
-                    >
-                      <span className="sr-only">{social}</span>
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM5.5 8.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM10 15a5 5 0 100-10 5 5 0 000 10z" clipRule="evenodd" />
-                      </svg>
-                    </a>
-                  ))}
-                </div>
+                
               </div>
               
               <div>
