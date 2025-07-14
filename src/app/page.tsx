@@ -153,7 +153,7 @@ export default function Home() {
                 <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 overflow-hidden bg-white">
                   <div className="aspect-square overflow-hidden">
                     <Image 
-                      src={`/images/team/team${idx+1}.png`} 
+                      src={`/images/team/tea${idx+1}.png`} 
                       alt={member.name} 
                       width={500} 
                       height={500} 
