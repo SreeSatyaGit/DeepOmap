@@ -15,8 +15,8 @@ export default function Home() {
             <ul className="flex space-x-6">
               {['About', 'Team', 'AI Tool', 'Research', 'Contact'].map((item) => (
                 <li key={item}>
-                  <Link 
-                    href={`#${item.toLowerCase().replace(' ', '')}`} 
+                  <Link
+                    href={`#${item.toLowerCase().replace(' ', '')}`}
                     className="relative font-medium before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
                     before:bottom-0 before:left-0 before:bg-[#50C878] before:scale-x-0 before:origin-top-right
                     before:transition before:duration-300 hover:before:scale-x-100 hover:before:origin-top-left"
@@ -55,15 +55,15 @@ export default function Home() {
             Our AI-powered diagnostic tool assists oncologists in early detection and personalized treatment planning for improved patient outcomes.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-6">
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className="group relative bg-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#50C878]/30"
             >
               <span className="relative z-10">Request a Demo</span>
               <span className="absolute inset-0 bg-[#45b76a] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </a>
-            <a 
-              href="#about" 
+            <a
+              href="#about"
               className="group relative border-2 border-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg"
             >
               <span className="relative z-10 group-hover:text-white transition-colors duration-300">Learn More</span>
@@ -90,15 +90,15 @@ export default function Home() {
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">About DeepOMAP</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
             </div>
-            
+
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="md:w-[60%] transition-all duration-500 hover:translate-y-[-5px]">
                 <div className="bg-white rounded-xl shadow-xl overflow-hidden">
                   {/* Fixed thumbnail image with proper aspect ratio and alignment */}
                   <div className="w-full h-80 relative">
-                    <Image 
-                      src="/images/thumbnail_Image1.png" 
-                      alt="About DeepOMAP" 
+                    <Image
+                      src="/images/thumbnail_Image1.png"
+                      alt="About DeepOMAP"
                       fill
                       className="object-cover object-center"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -106,7 +106,7 @@ export default function Home() {
                     />
                   </div>
                 </div>
-              </div>  
+              </div>
               <div className="md:w-1/2 space-y-6">
                 {/* Placeholder for Our Mission DeepOMAP content */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
@@ -140,7 +140,7 @@ export default function Home() {
                 Our multidisciplinary team combines expertise in oncology, artificial intelligence, and software engineering.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
                 { name: 'Kiran Vanaja', title: '', bio: 'Research Assitant Professor at Roux Institute at Northeastern University' },
@@ -148,16 +148,16 @@ export default function Home() {
                 { name: 'Radha Mukherjee', title: '', bio: 'Associate Research Scientist Memorial Slon kettering' },
                 { name: 'Logan Schwartz', title: '', bio: 'Post-Doctoral at Roux Institute at Northeastern University ' },
                 { name: 'Satya Nandivada', title: '', bio: 'MS Northeastern University' }
-            
+
               ].map((member, idx) => (
                 <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 overflow-hidden bg-white">
                   <div className="aspect-square overflow-hidden">
-                    <Image 
-                      src={`/images/team/team${idx+1}.png`} 
-                      alt={member.name} 
-                      width={500} 
-                      height={500} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                    <Image
+                      src={`/images/team/team${idx + 1}.png`}
+                      alt={member.name}
+                      width={500}
+                      height={500}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-6">
@@ -166,9 +166,9 @@ export default function Home() {
                     <p className="text-gray-600 text-sm">{member.bio}</p>
                     <div className="flex mt-4 space-x-3">
                       {['LinkedIn', 'Twitter', 'Email'].map((social, i) => (
-                        <a 
+                        <a
                           key={i}
-                          href="#" 
+                          href="#"
                           className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#50C878] hover:text-white transition-colors duration-300"
                         >
                           <span className="sr-only">{social}</span>
@@ -226,9 +226,9 @@ export default function Home() {
               {/* Cell Landscape Image */}
               <div className="w-full lg:w-[70%]">
                 <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden shadow-md">
-                  <Image 
-                    src="/images/Cell Landscape-1.png" 
-                    alt="Cell Landscape Visualization" 
+                  <Image
+                    src="/images/Cell Landscape-1.png"
+                    alt="Cell Landscape Visualization"
                     fill
                     className="object-contain object-center p-4"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -243,36 +243,36 @@ export default function Home() {
         <section id="research" className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-  
+
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Journey</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Our technology is backed by rigorous research and clinical validation.
               </p>
             </div>
-            
+
             <div className="relative">
               {/* Vertical line */}
               <div className="absolute h-full w-0.5 bg-gray-200 left-1/2 transform -translate-x-1/2"></div>
-              
+
               <div className="space-y-16">
                 {[
-                  { 
-                    title: 'DeepOMAP Founded', 
-                    date: 'Jan 2025', 
+                  {
+                    title: 'DeepOMAP Founded',
+                    date: 'Jan 2025',
                     result: 'Registered as Maine-based LLC',
                     align: 'right'
                   },
-                  { 
-                    title: 'Selected for MIT NSF I-Corps Program', 
-                    date: 'Mar 2025', 
+                  {
+                    title: 'Selected for MIT NSF I-Corps Program',
+                    date: 'Mar 2025',
                     result: 'Customer discovery and validation',
                     description: 'Developed initial prototype and conducted user interviews.',
                     align: 'left'
                   },
-                  { 
-                    title: 'Early Minimum Viable Product (MVP) Launched', 
-                    date: 'May 2024', 
+                  {
+                    title: 'Early Minimum Viable Product (MVP) Launched',
+                    date: 'May 2024',
                     result: 'Validating and improving AI algorithms',
                     description: 'Developed initial foundational model for cancer detection and explainable AI.',
                     align: 'right'
@@ -296,10 +296,10 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              
+
               <div className="text-center mt-16">
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="inline-flex items-center text-[#50C878] font-medium hover:underline"
                 >
                   View all research publications
@@ -321,73 +321,63 @@ export default function Home() {
                 <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Contact Us</h3>
                 <div className="h-1 w-20 bg-[#50C878] mb-6"></div>
                 <p className="text-gray-700 mb-8">
-                  Interested in learning more about DeepOMAP? 
+                  Interested in learning more about DeepOMAP? find us at the Vanaja Lab at the Roux Institute, Northeastern University, Portland, Maine.
                 </p>
-                
-                <div className="space-y-6">
-                  {[
-                    // { icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', title: 'Email', detail: 'info@deepomap.com' },
-                    // { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', title: 'Address', detail: '123 Innovation Dr, San Francisco, CA' }
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex items-start">
-                      <div className="bg-[#50C878]/10 p-3 rounded-full mr-4">
-                        <svg className="w-6 h-6 text-[#50C878]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
-                        </svg>
-                      </div>
-                      {/* <div>
-                        <h4 className="font-semibold text-gray-900">{item.title}</h4>
-                        <p className="text-gray-600">{item.detail}</p>
-                      </div> */}
-                    </div>
-                  ))}
-                </div>
+                <a
+                  href="https://vanajasysbiolab.org/" // Replace with actual Vanaja Lab URL if different
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#50C878] underline hover:text-[#3ca96a]"
+                >
+                  Vanaja Lab
+                </a>
+
               </div>
-              
+
               <div className="md:w-1/2 bg-white rounded-xl shadow-lg p-8">
                 <form className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                      <input 
-                        type="text" 
-                        placeholder="John Doe" 
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
-                        required 
+                      <input
+                        type="text"
+                        placeholder="John Doe"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500"
+                        required
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                      <input 
-                        type="email" 
-                        placeholder="john@example.com" 
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
-                        required 
+                      <input
+                        type="email"
+                        placeholder="john@example.com"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500"
+                        required
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Organization</label>
-                    <input 
-                      type="text" 
-                      placeholder="Medical Center Name" 
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
+                    <input
+                      type="text"
+                      placeholder="Medical Center Name"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                    <textarea 
-                      rows={4} 
-                      placeholder="How can we help you?" 
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
+                    <textarea
+                      rows={4}
+                      placeholder="How can we help you?"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500"
                       required
                     ></textarea>
                   </div>
-                  
-                  <button 
-                    type="submit" 
+
+                  <button
+                    type="submit"
                     className="w-full bg-[#50C878] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#45b76a] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#50C878]"
                   >
                     Send Message
@@ -405,9 +395,9 @@ export default function Home() {
               <div className="col-span-1 md:col-span-2">
                 <p className="text-gray-300 mb-6 max-w-md">
                 </p>
-                
+
               </div>
-              
+
               <div>
                 <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                 <ul className="space-y-2">
@@ -420,10 +410,10 @@ export default function Home() {
                   ))}
                 </ul>
               </div>
-              
+
               <div>
                 <h4 className="text-lg font-semibold mb-4">Resources</h4>
-                <ul className="space-y-2">            
+                <ul className="space-y-2">
                   {['FAQs', 'Privacy Policy', 'Terms of Service', 'Support', 'Documentation'].map((link, idx) => (
                     <li key={idx}>
                       <a href="#" className="text-gray-300 hover:text-[#50C878] transition-colors duration-300">
@@ -433,8 +423,8 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="mt-6">
-                  <a 
-                    href="#contact" 
+                  <a
+                    href="#contact"
                     className="inline-flex items-center text-[#50C878] font-medium hover:underline"
                   >
                     Subscribe to newsletter
@@ -445,7 +435,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
             <div className="border-t border-gray-800 pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center">
                 <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} DeepOMAP. All rights reserved.</p>
