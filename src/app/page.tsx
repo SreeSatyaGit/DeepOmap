@@ -13,7 +13,7 @@ export default function Home() {
           </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
-              {['About', 'Team', 'AI Tool', 'Research', 'Contact'].map((item) => (
+              {['Mission', 'Leadership', 'Foundational Model', 'Journey', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link
                     href={`#${item.toLowerCase().replace(' ', '')}`}
@@ -63,7 +63,7 @@ export default function Home() {
               <span className="absolute inset-0 bg-[#45b76a] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             </a>
             <a
-              href="#about"
+              href="#mission"
               className="group relative border-2 border-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg"
             >
               <span className="relative z-10 group-hover:text-white transition-colors duration-300">Learn More</span>
@@ -72,7 +72,7 @@ export default function Home() {
           </div>
         </div>
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <a href="#about" aria-label="Scroll Down">
+          <a href="#mission" aria-label="Scroll Down">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
@@ -82,12 +82,11 @@ export default function Home() {
 
       {/* Page Content */}
       <main className="relative z-10">
-        {/* About Section with properly aligned thumbnail image */}
-        <section id="about" className="py-24 bg-[#f8f9fa]">
+        {/* Mission Section with properly aligned thumbnail image */}
+        <section id="mission" className="py-24 bg-[#f8f9fa]">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Our Mission</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">About DeepOMAP</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Mission</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
             </div>
 
@@ -130,11 +129,10 @@ export default function Home() {
         </section>
 
         {/* Team Section with hover effects */}
-        <section id="team" className="py-24 bg-white">
+        <section id="leadership" className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Expert Leadership</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Meet Our Team</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Leadership</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Our multidisciplinary team combines expertise in oncology, artificial intelligence, and software engineering.
@@ -186,14 +184,13 @@ export default function Home() {
         </section>
 
         {/* Tool Section with properly aligned cell landscape image */}
-        <section id="aitool" className="py-24 bg-[#f8f9fa]">
+        <section id="foundationalmodel" className="py-24 bg-[#f8f9fa]">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">AI Technology</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our AI Tool</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900"> Foundational AI Model</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                DeepOMAP's platform analyzes medical imaging to detect tumors, predict progression, and recommend personalized treatments.
+                DeepOMAP's platform analyzes single-cell multi omics datasets to predict progression, and recommend personalized treatments.
               </p>
             </div>
 
@@ -240,14 +237,13 @@ export default function Home() {
         </section>
 
         {/* Research Section with timeline */}
-        <section id="research" className="py-24 bg-white">
+        <section id="journey" className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
 
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Journey</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Our technology is backed by rigorous research and clinical validation.
               </p>
             </div>
 
@@ -401,7 +397,7 @@ export default function Home() {
               <div>
                 <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                 <ul className="space-y-2">
-                  {['About', 'Team', 'AI Tool', 'Research', 'Contact', 'Blog', 'Careers'].map((link, idx) => (
+                  {['Mission', 'Leadership', 'Foundational Model', 'Research', 'Contact', 'Blog', 'Careers'].map((link, idx) => (
                     <li key={idx}>
                       <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-gray-300 hover:text-[#50C878] transition-colors duration-300">
                         {link}
