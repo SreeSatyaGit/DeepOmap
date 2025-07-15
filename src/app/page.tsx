@@ -144,7 +144,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
                 { name: 'Kiran Vanaja', title: '', bio: 'Research Assitant Professor at Roux Institute at Northeastern University' },
-                { name: 'Michela Reagan', title: '', bio: 'MaineHealth Institute of Research' },
+                { name: 'Michaela Reagan', title: '', bio: 'MaineHealth Institute of Research' },
                 { name: 'Radha Mukherjee', title: '', bio: 'Associate Research Scientist Memorial Slon kettering' },
                 { name: 'Logan Schwartz', title: '', bio: 'Post-Doctoral at Roux Institute at Northeastern University ' },
                 { name: 'Satya Nandivada', title: '', bio: 'MS Northeastern University' }
@@ -153,7 +153,7 @@ export default function Home() {
                 <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 overflow-hidden bg-white">
                   <div className="aspect-square overflow-hidden">
                     <Image 
-                      src={`/images/team/tea${idx+1}.png`} 
+                      src={`/images/team/team${idx+1}.png`} 
                       alt={member.name} 
                       width={500} 
                       height={500} 
