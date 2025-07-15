@@ -179,7 +179,7 @@ export default function Home() {
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Mission</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6 transition-all duration-300"></div>
             </div>
-            
+
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="md:w-[60%] group">
                 <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:scale-105">
@@ -194,7 +194,7 @@ export default function Home() {
                     />
                   </div>
                 </div>
-              </div>  
+              </div>
               <div className="md:w-1/2 space-y-6">
                 <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
                   <p className="text-gray-700 text-lg leading-relaxed">
@@ -220,14 +220,13 @@ export default function Home() {
         <section id="leadership" className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Expert Leadership</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Meet Our Team</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Leadership</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Our multidisciplinary team combines expertise in oncology, artificial intelligence, and software engineering.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
                 { name: 'Kiran Vanaja', title: 'Founder & Principal Investigator', bio: 'Research Assitant Professor at Roux Institute at Northeastern University' },
@@ -238,12 +237,12 @@ export default function Home() {
               ].map((member, idx) => (
                 <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden bg-white">
                   <div className="aspect-square overflow-hidden">
-                    <Image 
-                      src={`/images/team${idx+1}.jpg`} 
-                      alt={member.name} 
-                      width={400} 
-                      height={400} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                    <Image
+                      src={`/images/team/team${idx + 1}.png`}
+                      alt={member.name}
+                      width={500}
+                      height={500}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                   <div className="p-6">
@@ -252,7 +251,7 @@ export default function Home() {
                     <p className="text-gray-600 text-sm">{member.bio}</p>
                     <div className="flex mt-4 space-x-3">
                       {['LinkedIn', 'Twitter', 'Email'].map((social, i) => (
-                        <a 
+                        <a
                           key={i}
                           href="#"
                           className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#50C878] hover:text-white transition-all duration-300 hover:scale-110"
@@ -278,7 +277,7 @@ export default function Home() {
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Foundational AI Model</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                DeepOMAP's platform analyzes medical imaging to detect tumors, predict progression, and recommend personalized treatments.
+                DeepOMAP's platform analyzes single-cell multi omics datasets to predict progression, and recommend personalized treatments.
               </p>
             </div>
 
@@ -329,31 +328,30 @@ export default function Home() {
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Journey</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
             </div>
-            
+
             <div className="relative">
               <div className="absolute h-full w-0.5 bg-gray-200 left-1/2 transform -translate-x-1/2"></div>
-              
+
               <div className="space-y-16">
                 {[
-                  { 
-                    title: 'Early Detection Study', 
-                    date: 'Jan 2025', 
-                    result: '15% improvement in detection accuracy',
-                    description: 'Multicenter study across 5 major oncology centers with 1,200+ patients.',
+                  {
+                    title: 'DeepOMAP Founded',
+                    date: 'Jan 2025',
+                    result: 'Registered as Maine-based LLC',
                     align: 'right'
                   },
-                  { 
-                    title: 'Clinical Workflow Integration', 
-                    date: 'Nov 2024', 
-                    result: '30% faster diagnosis turnaround time',
-                    description: 'Implementation study at University Medical Center showing significant time savings.',
+                  {
+                    title: 'Selected for MIT NSF I-Corps Program',
+                    date: 'Mar 2025',
+                    result: 'Customer discovery and validation',
+                    description: 'Developed initial prototype and conducted user interviews.',
                     align: 'left'
                   },
-                  { 
-                    title: 'Treatment Recommendation Validation', 
-                    date: 'Sep 2024', 
-                    result: '22% improvement in treatment matching',
-                    description: 'Comparison with expert panel recommendations across diverse cancer types.',
+                  {
+                    title: 'Early Minimum Viable Product (MVP) Launched',
+                    date: 'May 2024',
+                    result: 'Validating and improving AI algorithms',
+                    description: 'Developed initial foundational model for cancer detection and explainable AI.',
                     align: 'right'
                   }
                 ].map((item, idx) => (
@@ -375,7 +373,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              
+
               <div className="text-center mt-16">
                 <button className="inline-flex items-center text-[#50C878] font-medium hover:underline transition-all duration-300 hover:translate-x-2">
                   View all research publications
@@ -397,7 +395,7 @@ export default function Home() {
                 <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Contact Us</h3>
                 <div className="h-1 w-20 bg-[#50C878] mb-6"></div>
                 <p className="text-gray-700 mb-8">
-                  Interested in learning more about DeepOMAP? Our team is ready to answer your questions and schedule a demonstration.
+                  Interested in learning more about DeepOMAP? find us at the Vanaja Lab at the Roux Institute, Northeastern University, Portland, Maine.
                 </p>
                 <a
                   href="https://vanajasysbiolab.org/" 
@@ -431,7 +429,7 @@ export default function Home() {
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Organization</label>
                     <input
@@ -440,7 +438,7 @@ export default function Home() {
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500 transition-all duration-300"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                     <textarea
@@ -473,7 +471,7 @@ export default function Home() {
                   Revolutionizing cancer care through AI-powered diagnostic tools and personalized treatment planning.
                 </p>
               </div>
-              
+
               <div>
                 <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                 <ul className="space-y-2">
@@ -495,10 +493,10 @@ export default function Home() {
                   ))}
                 </ul>
               </div>
-              
+
               <div>
                 <h4 className="text-lg font-semibold mb-4">Resources</h4>
-                <ul className="space-y-2">            
+                <ul className="space-y-2">
                   {['FAQs', 'Privacy Policy', 'Terms of Service', 'Support', 'Documentation'].map((link, idx) => (
                     <li key={idx}>
                       <a href="#" className="text-gray-300 hover:text-[#50C878] transition-colors duration-300">
@@ -520,7 +518,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
             <div className="border-t border-gray-800 pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center">
                 <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} DeepOMAP. All rights reserved.</p>
