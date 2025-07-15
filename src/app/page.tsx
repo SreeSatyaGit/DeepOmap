@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['mission', 'leadership', 'foundationalmodel', 'journey', 'contact'];
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 80;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -56,13 +56,21 @@ export default function Home() {
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
-              {['About', 'Team', 'AI Tool', 'Research', 'Contact'].map((item) => (
-                <li key={item}>
-                  <Link 
-                    href={`#${item.toLowerCase().replace(' ', '')}`} 
-                    className="relative font-medium before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
-                    before:bottom-0 before:left-0 before:bg-[#50C878] before:scale-x-0 before:origin-top-right
-                    before:transition before:duration-300 hover:before:scale-x-100 hover:before:origin-top-left"
+              {[
+                { name: 'Mission', id: 'mission' },
+                { name: 'Leadership', id: 'leadership' },
+                { name: 'Foundational Model', id: 'foundationalmodel' },
+                { name: 'Journey', id: 'journey' },
+                { name: 'Contact', id: 'contact' }
+              ].map((item) => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => scrollToSection(item.id)}
+                    className={`relative font-medium transition-all duration-300 hover:text-[#50C878] 
+                    before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
+                    before:bottom-0 before:left-0 before:bg-[#50C878] before:origin-top-right
+                    before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-top-left
+                    ${activeSection === item.id ? 'text-[#50C878] before:scale-x-100' : 'before:scale-x-0'}`}
                   >
                     {item.name}
                   </button>
@@ -126,34 +134,36 @@ export default function Home() {
           playsInline
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#001f3f]/70 to-transparent z-0"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 animate-fade-in">
-          <h2 className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg leading-tight">
-            <span className="block">Revolutionizing Cancer Care</span>
-            <span className="block mt-2 text-[#50C878]">with Artificial Intelligence</span>
-          </h2>
-          <p className="mt-6 text-lg md:text-xl text-gray-200 max-w-2xl drop-shadow-lg font-light">
-            Our AI-powered diagnostic tool assists oncologists in early detection and personalized treatment planning for improved patient outcomes.
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-6">
-            <a 
-              href="#contact" 
-              className="group relative bg-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#50C878]/30"
-            >
-              <span className="relative z-10">Request a Demo</span>
-              <span className="absolute inset-0 bg-[#45b76a] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-            </a>
-            <a 
-              href="#about" 
-              className="group relative border-2 border-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg"
-            >
-              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Learn More</span>
-              <span className="absolute inset-0 bg-[#50C878] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-            </a>
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+          <div className="animate-fade-in">
+            <h2 className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg leading-tight">
+              <span className="block animate-slide-up">Revolutionizing Cancer Care</span>
+              <span className="block mt-2 text-[#50C878] animate-slide-up-delay">with Artificial Intelligence</span>
+            </h2>
+            <p className="mt-6 text-lg md:text-xl text-gray-200 max-w-2xl drop-shadow-lg font-light animate-fade-in-delay">
+              Our AI-powered diagnostic tool assists oncologists in early detection and personalized treatment planning for improved patient outcomes.
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row gap-6 animate-fade-in-delay-2">
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="group relative bg-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#50C878]/30 hover:scale-105"
+              >
+                <span className="relative z-10">Request a Demo</span>
+                <span className="absolute inset-0 bg-[#45b76a] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              </button>
+              <button
+                onClick={() => scrollToSection('mission')}
+                className="group relative border-2 border-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105"
+              >
+                <span className="relative z-10 group-hover:text-white transition-colors duration-300">Learn More</span>
+                <span className="absolute inset-0 bg-[#50C878] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              </button>
+            </div>
           </div>
         </div>
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <a href="#about" aria-label="Scroll Down">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <button onClick={() => scrollToSection('mission')} aria-label="Scroll Down">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white hover:text-[#50C878] transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </button>
@@ -162,23 +172,21 @@ export default function Home() {
 
       {/* Page Content */}
       <main className="relative z-10">
-        {/* About Section with properly aligned thumbnail image */}
-        <section id="about" className="py-24 bg-[#f8f9fa]">
+        {/* Mission Section */}
+        <section id="mission" className="py-24 bg-[#f8f9fa] transition-all duration-500">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Our Mission</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">About DeepOMAP</h3>
-              <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Mission</h3>
+              <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6 transition-all duration-300"></div>
             </div>
 
             <div className="flex flex-col md:flex-row items-center gap-12">
-              <div className="md:w-[60%] transition-all duration-500 hover:translate-y-[-5px]">
-                <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-                  {/* Fixed thumbnail image with proper aspect ratio and alignment */}
-                  <div className="w-full h-80 relative">
-                    <Image 
-                      src="/images/thumbnail_Image1.png" 
-                      alt="About DeepOMAP" 
+              <div className="md:w-[60%] group">
+                <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:scale-105">
+                  <div className="w-full h-80 relative overflow-hidden">
+                    <Image
+                      src="/images/thumbnail_Image1.png"
+                      alt="About DeepOMAP"
                       fill
                       className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -208,8 +216,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Team Section with hover effects */}
-        <section id="team" className="py-24 bg-white">
+        {/* Leadership Section */}
+        <section id="leadership" className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Leadership</h3>
@@ -221,9 +229,11 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
-                { name: 'Jane Doe', title: 'Chief Medical Officer', bio: 'Board-certified oncologist with 15+ years of clinical experience.' },
-                { name: 'John Smith', title: 'CTO & Lead Data Scientist', bio: 'PhD in AI with focus on medical imaging analysis algorithms.' },
-                { name: 'Emily White', title: 'Lead Engineer', bio: 'Engineering leader specializing in healthcare technology solutions.' }
+                { name: 'Kiran Vanaja', title: 'Founder & Principal Investigator', bio: 'Research Assitant Professor at Roux Institute at Northeastern University' },
+                { name: 'Michaela Reagan', title: 'Chief Scientific Officer ', bio: 'MaineHealth Institute of Research' },
+                { name: 'Radha Mukherjee', title: 'President ', bio: 'Associate Research Scientist Memorial Slon kettering' },
+                { name: 'Logan Schwartz', title: 'Vice President ', bio: 'Post-Doctoral at Roux Institute at Northeastern University ' },
+                { name: 'Satya Nandivada', title: 'Co-Founder & Chief Executive Officer', bio: 'MS Northeastern University' } 
               ].map((member, idx) => (
                 <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden bg-white">
                   <div className="aspect-square overflow-hidden">
@@ -243,8 +253,8 @@ export default function Home() {
                       {['LinkedIn', 'Twitter', 'Email'].map((social, i) => (
                         <a
                           key={i}
-                          href="#" 
-                          className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#50C878] hover:text-white transition-colors duration-300"
+                          href="#"
+                          className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#50C878] hover:text-white transition-all duration-300 hover:scale-110"
                         >
                           <span className="sr-only">{social}</span>
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -260,12 +270,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Tool Section with properly aligned cell landscape image */}
-        <section id="aitool" className="py-24 bg-[#f8f9fa]">
+        {/* Foundational Model Section */}
+        <section id="foundationalmodel" className="py-24 bg-[#f8f9fa]">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">AI Technology</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our AI Tool</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Foundational AI Model</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 DeepOMAP's platform analyzes single-cell multi omics datasets to predict progression, and recommend personalized treatments.
@@ -298,10 +307,10 @@ export default function Home() {
               </div>
 
               <div className="w-full lg:w-[70%]">
-                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden shadow-md">
-                  <Image 
-                    src="/images/Cell Landscape-1.png" 
-                    alt="Cell Landscape Visualization" 
+                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+                  <Image
+                    src="/images/Cell Landscape-1.png"
+                    alt="Cell Landscape Visualization"
                     fill
                     className="object-contain object-center p-4 transition-transform duration-300 hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -312,16 +321,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Research Section with timeline */}
-        <section id="research" className="py-24 bg-white">
+        {/* Journey Section */}
+        <section id="journey" className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="inline-block text-sm font-bold text-[#50C878] uppercase tracking-wider mb-2">Evidence-Based</h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Research & Validation</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Journey</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Our technology is backed by rigorous research and clinical validation.
-              </p>
             </div>
 
             <div className="relative">
@@ -370,10 +375,7 @@ export default function Home() {
               </div>
 
               <div className="text-center mt-16">
-                <a 
-                  href="#" 
-                  className="inline-flex items-center text-[#50C878] font-medium hover:underline"
-                >
+                <button className="inline-flex items-center text-[#50C878] font-medium hover:underline transition-all duration-300 hover:translate-x-2">
                   View all research publications
                   <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -395,73 +397,61 @@ export default function Home() {
                 <p className="text-gray-700 mb-8">
                   Interested in learning more about DeepOMAP? find us at the Vanaja Lab at the Roux Institute, Northeastern University, Portland, Maine.
                 </p>
-                
-                <div className="space-y-6">
-                  {[
-                    { icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z', title: 'Phone', detail: '+1 (555) 123-4567' },
-                    { icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', title: 'Email', detail: 'info@deepomap.com' },
-                    { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', title: 'Address', detail: '123 Innovation Dr, San Francisco, CA' }
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex items-start">
-                      <div className="bg-[#50C878]/10 p-3 rounded-full mr-4">
-                        <svg className="w-6 h-6 text-[#50C878]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
-                        </svg>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900">{item.title}</h4>
-                        <p className="text-gray-600">{item.detail}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <a
+                  href="https://vanajasysbiolab.org/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#50C878] underline hover:text-[#3ca96a] transition-colors duration-300"
+                >
+                  Vanaja Lab
+                </a>
               </div>
-              
-              <div className="md:w-1/2 bg-white rounded-xl shadow-lg p-8">
+
+              <div className="md:w-1/2 bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl">
                 <form className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                      <input 
-                        type="text" 
-                        placeholder="John Doe" 
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
-                        required 
+                      <input
+                        type="text"
+                        placeholder="John Doe"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500 transition-all duration-300"
+                        required
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                      <input 
-                        type="email" 
-                        placeholder="john@example.com" 
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
-                        required 
+                      <input
+                        type="email"
+                        placeholder="john@example.com"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500 transition-all duration-300"
+                        required
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Organization</label>
-                    <input 
-                      type="text" 
-                      placeholder="Medical Center Name" 
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
+                    <input
+                      type="text"
+                      placeholder="Medical Center Name"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500 transition-all duration-300"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                    <textarea 
-                      rows={4} 
-                      placeholder="How can we help you?" 
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500" 
+                    <textarea
+                      rows={4}
+                      placeholder="How can we help you?"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#50C878] focus:border-transparent placeholder-gray-500 transition-all duration-300"
                       required
                     ></textarea>
                   </div>
-                  
-                  <button 
-                    type="submit" 
-                    className="w-full bg-[#50C878] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#45b76a] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#50C878]"
+
+                  <button
+                    type="submit"
+                    className="w-full bg-[#50C878] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#45b76a] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#50C878] hover:scale-105"
                   >
                     Send Message
                   </button>
@@ -476,37 +466,29 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
               <div className="col-span-1 md:col-span-2">
-                <div className="flex items-center gap-3 mb-4">
-                  <Image src="/logo/logoDeepOmap.png" alt="DeepOMAP Logo" width={40} height={40} />
-                  <h4 className="text-xl font-bold">DeepOMAP</h4>
-                </div>
+                <h4 className="text-xl font-bold mb-4">DeepOMAP</h4>
                 <p className="text-gray-300 mb-6 max-w-md">
-                  Revolutionizing cancer care through AI-powered diagnostics and personalized treatment planning.
+                  Revolutionizing cancer care through AI-powered diagnostic tools and personalized treatment planning.
                 </p>
-                <div className="flex space-x-4">
-                  {['Twitter', 'LinkedIn', 'Facebook', 'Instagram'].map((social, idx) => (
-                    <a 
-                      key={idx}
-                      href="#" 
-                      className="w-10 h-10 rounded-full bg-[#003366] flex items-center justify-center hover:bg-[#50C878] transition-colors duration-300"
-                    >
-                      <span className="sr-only">{social}</span>
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM5.5 8.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM10 15a5 5 0 100-10 5 5 0 000 10z" clipRule="evenodd" />
-                      </svg>
-                    </a>
-                  ))}
-                </div>
               </div>
 
               <div>
                 <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                 <ul className="space-y-2">
-                  {['About', 'Team', 'AI Tool', 'Research', 'Contact', 'Blog', 'Careers'].map((link, idx) => (
-                    <li key={idx}>
-                      <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-gray-300 hover:text-[#50C878] transition-colors duration-300">
-                        {link}
-                      </a>
+                  {[
+                    { name: 'Mission', id: 'mission' },
+                    { name: 'Leadership', id: 'leadership' },
+                    { name: 'Foundational Model', id: 'foundationalmodel' },
+                    { name: 'Journey', id: 'journey' },
+                    { name: 'Contact', id: 'contact' }
+                  ].map((link) => (
+                    <li key={link.id}>
+                      <button 
+                        onClick={() => scrollToSection(link.id)}
+                        className="text-gray-300 hover:text-[#50C878] transition-colors duration-300"
+                      >
+                        {link.name}
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -524,9 +506,9 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="mt-6">
-                  <a 
-                    href="#contact" 
-                    className="inline-flex items-center text-[#50C878] font-medium hover:underline"
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center text-[#50C878] font-medium hover:underline transition-all duration-300"
                   >
                     Subscribe to newsletter
                     <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
