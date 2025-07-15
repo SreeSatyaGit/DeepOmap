@@ -141,11 +141,11 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
-                { name: 'Kiran Vanaja', title: '', bio: 'Research Assitant Professor at Roux Institute at Northeastern University' },
-                { name: 'Michaela Reagan', title: '', bio: 'MaineHealth Institute of Research' },
-                { name: 'Radha Mukherjee', title: '', bio: 'Associate Research Scientist Memorial Slon kettering' },
-                { name: 'Logan Schwartz', title: '', bio: 'Post-Doctoral at Roux Institute at Northeastern University ' },
-                { name: 'Satya Nandivada', title: '', bio: 'MS Northeastern University' }
+                { name: 'Kiran Vanaja', title: 'Founder & Principle Investigator', bio: 'Research Assitant Professor at Roux Institute at Northeastern University' },
+                { name: 'Michaela Reagan', title: 'Chief Scientific Officer ', bio: 'MaineHealth Institute of Research' },
+                { name: 'Radha Mukherjee', title: 'President ', bio: 'Associate Research Scientist Memorial Slon kettering' },
+                { name: 'Logan Schwartz', title: 'Vice President ', bio: 'Post-Doctoral at Roux Institute at Northeastern University ' },
+                { name: 'Satya Nandivada', title: 'Co-Founder & Chief Executive Officer', bio: 'MS Northeastern University' }
 
               ].map((member, idx) => (
                 <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 overflow-hidden bg-white">
