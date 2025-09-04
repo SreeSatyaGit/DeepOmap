@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import HeroVisualization from "../components/HeroVisualization";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,10 +46,10 @@ export default function Home() {
   return (
     <div className="relative overflow-hidden">
       {/* Header with improved styling and smooth transitions */}
-      <header className="w-full bg-gradient-to-r from-[#001f3f] to-[#003366] text-white p-4 md:p-6 fixed top-0 z-50 shadow-lg backdrop-blur-sm bg-opacity-95 transition-all duration-300">
+      <header className="w-full bg-white text-[#0F172A] p-4 md:p-6 fixed top-0 z-50 shadow-sm backdrop-blur-sm bg-opacity-95 transition-all duration-300">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h1 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-[#a3e0ff]">
+            <h1 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0EA5E9] to-[#0284C7]">
               DeepOMAP
             </h1>
           </div>
@@ -66,11 +67,11 @@ export default function Home() {
                 <li key={item.id}>
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className={`relative font-medium transition-all duration-300 hover:text-[#50C878] 
+                    className={`relative font-medium transition-all duration-300 hover:text-[#0EA5E9] 
                     before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
-                    before:bottom-0 before:left-0 before:bg-[#50C878] before:origin-top-right
+                    before:bottom-0 before:left-0 before:bg-[#0EA5E9] before:origin-top-right
                     before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-top-left
-                    ${activeSection === item.id ? 'text-[#50C878] before:scale-x-100' : 'before:scale-x-0'}`}
+                    ${activeSection === item.id ? 'text-[#0EA5E9] before:scale-x-100' : 'before:scale-x-0'}`}
                   >
                     {item.name}
                   </button>
@@ -81,7 +82,7 @@ export default function Home() {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-white transition-transform duration-300 hover:scale-110"
+            className="md:hidden text-[#0F172A] transition-transform duration-300 hover:scale-110"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
           >
@@ -111,8 +112,8 @@ export default function Home() {
                 <li key={item.id}>
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className={`block w-full text-left py-2 px-4 rounded-lg transition-all duration-300 hover:bg-[#50C878] hover:translate-x-2
-                    ${activeSection === item.id ? 'bg-[#50C878] text-white' : 'text-gray-200'}`}
+                    className={`block w-full text-left py-2 px-4 rounded-lg transition-all duration-300 hover:bg-[#0EA5E9] hover:translate-x-2
+                    ${activeSection === item.id ? 'bg-[#0EA5E9] text-white' : 'text-[#1E293B]'}`}
                   >
                     {item.name}
                   </button>
@@ -125,6 +126,7 @@ export default function Home() {
 
       {/* Hero Section with overlay gradient and animation */}
       <section className="relative h-screen overflow-hidden pt-20">
+        {/* Video background (commented out)
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
           src="/videos/BGV.mp4"
@@ -133,37 +135,44 @@ export default function Home() {
           muted
           playsInline
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#001f3f]/70 to-transparent z-0"></div>
+        */}
+        
+        {/* 3D Visualization Background */}
+        <div className="w-full h-full absolute top-0 left-0 z-[-1]">
+          <HeroVisualization />
+        </div>
+        
+        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-transparent z-0"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-          <div className="animate-fade-in">
-            <h2 className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg leading-tight">
+          <div className="animate-fade-in mt-[-50px] md:mt-[-80px]"> {/* Moved up to bring closer to buttons */}
+            <h2 className="text-4xl md:text-6xl font-bold text-[#0F172A] drop-shadow-sm leading-tight">
               <span className="block animate-slide-up">Revolutionizing Cancer Care</span>
-              <span className="block mt-2 text-[#50C878] animate-slide-up-delay">with Artificial Intelligence</span>
+              <span className="block mt-2 text-[#0EA5E9] animate-slide-up-delay">with Artificial Intelligence</span>
             </h2>
-            <p className="mt-6 text-lg md:text-xl text-gray-200 max-w-2xl drop-shadow-lg font-light animate-fade-in-delay">
+            <p className="mt-5 text-lg md:text-xl text-[#334155] max-w-2xl font-light animate-fade-in-delay">
               Our AI-powered diagnostic tool assists oncologists in early detection and personalized treatment planning for improved patient outcomes.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-6 animate-fade-in-delay-2">
+            <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6 animate-fade-in-delay-2">
               <button
                 onClick={() => scrollToSection('contact')}
-                className="group relative bg-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#50C878]/30 hover:scale-105"
+                className="w-full sm:w-auto group relative bg-[#0EA5E9] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#0EA5E9]/30 hover:scale-105"
               >
                 <span className="relative z-10">Request a Demo</span>
-                <span className="absolute inset-0 bg-[#45b76a] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                <span className="absolute inset-0 bg-[#0284C7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </button>
               <button
                 onClick={() => scrollToSection('mission')}
-                className="group relative border-2 border-[#50C878] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105"
+                className="w-full sm:w-auto group relative border-2 border-[#0EA5E9] text-[#0F172A] px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
                 <span className="relative z-10 group-hover:text-white transition-colors duration-300">Learn More</span>
-                <span className="absolute inset-0 bg-[#50C878] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                <span className="absolute inset-0 bg-[#0EA5E9] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </button>
             </div>
           </div>
         </div>
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
           <button onClick={() => scrollToSection('mission')} aria-label="Scroll Down">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white hover:text-[#50C878] transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#0F172A] hover:text-[#0EA5E9] transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </button>

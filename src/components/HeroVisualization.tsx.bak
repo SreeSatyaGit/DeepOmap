@@ -1,0 +1,594 @@
+'use client';
+
+import { useRef, useMemo, useCallback } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Sphere, MeshDistortMaterial, Line } from '@react-three/drei';
+import * as THREE from 'three';
+
+// Cell colors - limited to 5 distinct colors
+const cellColors = [
+  '#38BDF8', // Sky Blue
+  '#0EA5E9', // Bright Blue
+  '#8B5CF6', // Violet
+  '#4ADE80', // Bright Green
+  '#2DD4BF'  // Teal
+];
+
+// Helper function to smoothly transition between colors
+const lerpColor = (a: string, b: string, t: number): string => {
+  const colorA = new THREE.Color(a);
+  const colorB = new THREE.Color(b);
+  const lerpedColor = colorA.lerp(colorB, t);
+  return '#' + lerpedColor.getHexString();
+};
+
+// Type definitions
+interface AnimatedSphereProps {
+  position: [number, number, number];
+  color: string;
+  speed: number;
+  scale: number;
+  index: number;
+  updatePosition?: (index: number, position: [number, number, number]) => void;
+}
+
+// Animated Sphere component
+const AnimatedSphere = ({ position, color, speed, scale, index, updatePosition }: AnimatedSphereProps) => {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const initialPosition = useRef<[number, number, number]>([...position]);
+  const targetColor = useRef<string>(color);
+  const currentColor = useRef<string>(color);
+  const colorChangeTime = useRef<number>(Math.random() * 5);
+  const currentPosition = useRef<[number, number, number]>([...position]);
+  
+  // Animate the sphere with more complex movement and dramatic color changes
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    const elapsedTime = time * speed;
+    
+    if (meshRef.current) {
+      // More dynamic movement in all directions
+      meshRef.current.position.x = initialPosition.current[0] + Math.sin(elapsedTime * 0.7) * 1.5;
+      meshRef.current.position.y = initialPosition.current[1] + Math.sin(elapsedTime * 0.5) * 1.2;
+      meshRef.current.position.z = initialPosition.current[2] + Math.cos(elapsedTime * 0.3) * 1.8;
+      
+      // Update current position reference for edge connections
+      currentPosition.current = [
+        meshRef.current.position.x,
+        meshRef.current.position.y,
+        meshRef.current.position.z
+      ];
+      
+      // Report position back to parent for edge connections
+      if (updatePosition) {
+        updatePosition(index, currentPosition.current);
+      }
+      
+      // Dynamic rotation
+      meshRef.current.rotation.x = elapsedTime * 0.3;
+      meshRef.current.rotation.y = elapsedTime * 0.2;
+      meshRef.current.rotation.z = elapsedTime * 0.1;
+      
+      // Change scale slightly for "breathing" effect
+      const scalePulse = 1 + Math.sin(elapsedTime * 0.8) * 0.1;
+      meshRef.current.scale.set(scale * scalePulse, scale * scalePulse, scale * scalePulse);
+      
+      // More frequent color changes to show active "communication"
+      if (time > colorChangeTime.current) {
+        // More frequent changes - next change in 1-3 seconds with fewer cells
+        colorChangeTime.current = time + 0.8 + Math.random() * 2.2;
+        
+        // Select from limited cell color palette
+        targetColor.current = cellColors[Math.floor(Math.random() * cellColors.length)];
+        
+        // Emit a stronger "signal" by increasing emissive intensity with fewer cells
+        if (meshRef.current.material instanceof THREE.MeshStandardMaterial) {
+          const material = meshRef.current.material;
+          material.emissiveIntensity = 1.2;
+          // Will decay back to normal in the update loop below
+        }
+      }
+      
+      // Smooth color transition
+      if (meshRef.current.material instanceof THREE.MeshStandardMaterial) {
+        const material = meshRef.current.material;
+        currentColor.current = lerpColor(currentColor.current, targetColor.current, 0.08); // Faster transitions
+        material.color.set(currentColor.current);
+        material.emissive.set(currentColor.current);
+        
+        // Decay emissive intensity back to normal
+        if (material.emissiveIntensity > 0.3) {
+          material.emissiveIntensity *= 0.95;
+        }
+      }
+    }
+  });
+
+  return (
+    <Sphere 
+      ref={meshRef} 
+      args={[1, 64, 64]} 
+      position={position}
+      scale={scale}
+    >
+      <MeshDistortMaterial
+        color={color}
+        attach="material"
+        distort={0.4}
+        speed={2.0}
+        roughness={0.3}
+        metalness={0.1}
+        clearcoat={0.3}
+        clearcoatRoughness={0.25}
+        opacity={0.8}
+        transparent
+      />
+    </Sphere>
+  );
+};
+
+// Edge component to connect two cells
+  const proteins = useRef<Protein[]>([]);
+  
+  // We already have rnaColors defined globally
+  
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    
+    if (group.current) {
+      // Rotate the entire structure around its length (now z-axis for horizontal DNA)
+      group.current.rotation.x += rotationSpeed.current;
+      
+      // Add a slight wobble to the horizontal structure
+      group.current.position.z = Math.sin(time * 0.2) * 0.5;
+      
+      // Occasionally change rotation direction
+      if (Math.random() < 0.001) {
+        rotationSpeed.current = -rotationSpeed.current;
+        waveFreq.current = 0.1 + Math.random() * 0.3;
+      }
+      
+      // Apply additional wave effect to child elements (horizontally now)
+      if (group.current.children.length > 0) {
+        group.current.children.forEach((child, i) => {
+          if (child instanceof THREE.Group) {
+            // Applying wave effect horizontally (z axis) instead of vertically
+            child.position.z = (i - count / 2) * 0.2 + Math.sin(time * waveFreq.current + i * 0.2) * 0.3;
+          }
+        });
+      }
+      
+      // mRNA Transcription process - significantly reduced frequency
+      if (time - lastTranscriptionTime.current > 3.5) { // Create RNA every 3.5 seconds (greatly reduced)
+        lastTranscriptionTime.current = time;
+        
+        // Occasionally change transcription site
+        if (Math.random() < 0.05) {
+          transcriptionSite.current = Math.floor(Math.random() * count);
+        }
+        
+        // Only create RNA with 35% probability (significantly reducing RNA creation)
+        if (Math.random() < 0.35) {
+          // Get the position from where transcription happens (now along horizontal DNA)
+          const i = transcriptionSite.current;
+          const angle = (i / count) * Math.PI * 2;
+          const twistFactor = 0.2 * Math.sin(i * 0.5);
+          
+          // Match the horizontal DNA structure positioning
+          const x = (i - count / 2) * 0.5; // Position along x-axis (horizontal)
+          const y = Math.sin(angle + twistFactor) * radius * 0.3; // Height variation
+          const z = Math.cos(angle + twistFactor) * radius * 0.3; // Depth variation
+          
+          // Create a new RNA particle
+          const rnaParticle: RNAParticle = {
+            position: [x, y, z],
+            // Target position is randomly distributed in space (more spread along x for horizontal DNA)
+            targetPosition: [
+              x + (Math.random() - 0.5) * 14, // More spread along x-axis (horizontal direction)
+              y + (Math.random() - 0.5) * 10,
+              z + (Math.random() - 0.5) * 10
+            ],
+            color: rnaColors[Math.floor(Math.random() * rnaColors.length)],
+            size: 0.12 + Math.random() * 0.1, // Larger size for better visibility with fewer particles
+            progress: 0,
+            speed: 0.01 + Math.random() * 0.02,
+            lifetime: 4 + Math.random() * 3, // Reduced to 4-7 seconds lifetime
+            currentLife: 0,
+            canTranslate: Math.random() > 0.7, // 30% chance RNA will produce protein
+            translationProgress: 0
+          };
+          
+          // Limit the maximum number of RNA particles to 6
+          if (rnaParticles.current.length < 6) {
+            rnaParticles.current.push(rnaParticle);
+          } else {
+            // Replace a random existing particle if we're at the limit
+            const randomIndex = Math.floor(Math.random() * rnaParticles.current.length);
+            rnaParticles.current[randomIndex] = rnaParticle;
+          }
+        }
+      }
+      
+      // Update RNA particles
+      rnaParticles.current.forEach((particle, index) => {
+        // Update progress along path
+        particle.progress += particle.speed;
+        particle.currentLife += state.clock.elapsedTime - time;
+        
+        // Linear interpolation between start and target positions
+        particle.position = [
+          particle.position[0] + (particle.targetPosition[0] - particle.position[0]) * particle.speed,
+          particle.position[1] + (particle.targetPosition[1] - particle.position[1]) * particle.speed,
+          particle.position[2] + (particle.targetPosition[2] - particle.position[2]) * particle.speed
+        ];
+        
+        // Translation process (RNA -> Protein)
+        if (particle.canTranslate && particle.progress > 0.5 && particle.translationProgress === 0) {
+          // Start translation at a certain point in RNA's journey
+          particle.translationProgress = 0.01;
+          
+          // Create a new protein from this RNA
+          const proteinType = Math.floor(Math.random() * 3); // 0, 1, or 2 (three protein types)
+          const proteinColor = proteinColors[Math.floor(Math.random() * proteinColors.length)];
+          
+          // Create protein near the RNA's current position
+          const protein: Protein = {
+            position: [...particle.position] as [number, number, number],
+            targetPosition: [
+              particle.position[0] + (Math.random() - 0.5) * 8,
+              particle.position[1] + (Math.random() - 0.5) * 8, 
+              particle.position[2] + (Math.random() - 0.5) * 8
+            ] as [number, number, number],
+            type: proteinType,
+            rotation: [
+              Math.random() * Math.PI * 2,
+              Math.random() * Math.PI * 2,
+              Math.random() * Math.PI * 2
+            ] as [number, number, number],
+            scale: 0.7 + Math.random() * 0.5, // Larger scale for better visibility with fewer proteins
+            color: proteinColor,
+            lifetime: 15 + Math.random() * 25, // Increased lifetime to keep fewer proteins visible longer
+            currentLife: 0,
+            signaling: false
+          };
+          
+          proteins.current.push(protein);
+        }
+        
+        // Update translation progress if ongoing
+        if (particle.translationProgress > 0) {
+          particle.translationProgress += 0.01;
+        }
+        
+        // Remove particles that have reached their lifetime (with a stricter check)
+        if (particle.currentLife > particle.lifetime || particle.currentLife > 8) {
+          rnaParticles.current.splice(index, 1);
+        }
+      });
+      
+      // Update protein movements and behaviors
+      proteins.current.forEach((protein, index) => {
+        protein.currentLife += state.clock.elapsedTime - time;
+        
+        // Move proteins toward their target positions
+        const moveSpeed = 0.005;
+        protein.position = [
+          protein.position[0] + (protein.targetPosition[0] - protein.position[0]) * moveSpeed,
+          protein.position[1] + (protein.targetPosition[1] - protein.position[1]) * moveSpeed,
+          protein.position[2] + (protein.targetPosition[2] - protein.position[2]) * moveSpeed
+        ] as [number, number, number];
+        
+        // Occasionally pick a new target position
+        if (Math.random() < 0.005) {
+          protein.targetPosition = [
+            protein.position[0] + (Math.random() - 0.5) * 8,
+            protein.position[1] + (Math.random() - 0.5) * 6,
+            protein.position[2] + (Math.random() - 0.5) * 8
+          ] as [number, number, number];
+        }
+        
+        // Occasionally signal (proteins are responsible for cell-cell communication)
+        if (Math.random() < 0.01) {
+          protein.signaling = true;
+        } else if (protein.signaling && Math.random() < 0.1) {
+          protein.signaling = false;
+        }
+        
+        // Remove proteins that have reached their lifetime
+        if (protein.currentLife > protein.lifetime) {
+          proteins.current.splice(index, 1);
+        }
+      });
+    }
+  });
+
+  // Create DNA strands with more variety and colors from the palette
+  return (
+    <group ref={group} position={[0, 2, 0]} rotation={[0, Math.PI/6, 0]}> {/* Position higher and rotated for better horizontal view */}
+      {/* Horizontal DNA structure */}
+      {Array.from({ length: count }).map((_, i) => {
+        // Calculate position along a horizontal helix
+        const angle = (i / count) * Math.PI * 2;
+        const twistFactor = 0.2 * Math.sin(i * 0.5);
+        
+        // X is now the primary axis of the helix (horizontal)
+        const x = (i - count / 2) * 0.5; // Spread along x-axis
+        const y = Math.sin(angle + twistFactor) * radius * 0.3; // Height variation (reduced)
+        const z = Math.cos(angle + twistFactor) * radius * 0.3; // Depth variation (reduced)
+        
+        // Use DNA-specific colors
+        const colorIndex1 = i % dnaColors.length;
+        const colorIndex2 = (i + 2) % dnaColors.length;
+        
+        return (
+          <group key={`dna-${i}`} position={[x, y, z]}>
+            <mesh>
+              <sphereGeometry args={[0.15 + (i % 3) * 0.05, 16, 16]} />
+              <meshStandardMaterial 
+                color={dnaColors[colorIndex1]} 
+                emissive={dnaColors[colorIndex1]} 
+                emissiveIntensity={0.3}
+                metalness={0.2}
+                roughness={0.4}
+              />
+            </mesh>
+            <mesh position={[0, 0.8, 0]}> {/* Connect vertically now */}
+              <sphereGeometry args={[0.15 + ((i+1) % 3) * 0.05, 16, 16]} />
+              <meshStandardMaterial 
+                color={dnaColors[colorIndex2]} 
+                emissive={dnaColors[colorIndex2]} 
+                emissiveIntensity={0.3}
+                metalness={0.2} 
+                roughness={0.4}
+              />
+            </mesh>
+          </group>
+        );
+      })}
+      
+      {/* RNA particles being transcribed - enhanced visibility with fewer particles */}
+      {rnaParticles.current.map((particle, i) => (
+        <mesh 
+          key={`rna-${i}`} 
+          position={particle.position} 
+          scale={particle.size}
+          rotation={[Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI]}
+        >
+          <dodecahedronGeometry args={[1, 0]} /> {/* More distinctive shape */}
+          <meshStandardMaterial 
+            color={particle.color} 
+            emissive={particle.color}
+            emissiveIntensity={0.8} // Brighter emission
+            transparent
+            opacity={1 - particle.currentLife / particle.lifetime} // Fade out as lifetime progresses
+          />
+        </mesh>
+      ))}
+      
+      {/* Protein structures created by translation */}
+      {proteins.current.map((protein, i) => {
+        // Enhanced emissive intensity when protein is signaling
+        const emissiveIntensity = protein.signaling ? 0.8 : 0.3;
+        
+        // Render different protein structures based on type
+        switch(protein.type) {
+          case 0:
+            return (
+              <ReceptorProtein
+                key={`protein-receptor-${i}`}
+                position={protein.position}
+                rotation={protein.rotation}
+                scale={protein.scale}
+                color={protein.color}
+              />
+            );
+          case 1:
+            return (
+              <EnzymeProtein
+                key={`protein-enzyme-${i}`}
+                position={protein.position}
+                rotation={protein.rotation}
+                scale={protein.scale}
+                color={protein.color}
+              />
+            );
+          case 2:
+          default:
+            return (
+              <TransporterProtein
+                key={`protein-transport-${i}`}
+                position={protein.position}
+                rotation={protein.rotation}
+                scale={protein.scale}
+                color={protein.color}
+              />
+            );
+        }
+      })}
+    </group>
+  );
+};
+
+// Edge component to connect two cells
+interface EdgeProps {
+  start: [number, number, number];
+  end: [number, number, number];
+  color: string;
+  opacity?: number;
+}
+
+const Edge = ({ start, end, color, opacity = 0.6 }: EdgeProps) => {
+  return (
+    <Line
+      points={[start, end]}
+      color={color}
+      lineWidth={1.2} // Slightly thinner lines since we have many more of them
+      opacity={opacity}
+      transparent
+      dashed={false}
+    />
+  );
+};
+
+interface FloatingCellsProps {
+  count?: number;
+}
+
+// Floating cells with network connections
+const FloatingCells = ({ count = 8 }: FloatingCellsProps) => {
+  // Generate cells with random positions, but distributed more evenly around the space
+  const cells = useMemo(() => 
+    Array.from({ length: count }).map((_, index) => {
+      // Use the index to help distribute cells more evenly with fewer cells
+      const phi = Math.acos(-1 + (2 * index) / count);
+      const theta = Math.sqrt(count * Math.PI) * phi;
+      
+      // Add some randomness to the distribution
+      return {
+        position: [
+          (Math.cos(theta) * Math.sin(phi) * 8) + (Math.random() - 0.5) * 5,
+          (Math.sin(theta) * Math.sin(phi) * 7) + (Math.random() - 0.5) * 5,
+          (Math.cos(phi) * 8) + (Math.random() - 0.5) * 5
+        ] as [number, number, number],
+        scale: 0.3 + Math.random() * 0.35, // Even larger with fewer cells for better visibility
+        speed: 0.15 + Math.random() * 0.4,
+        color: cellColors[Math.floor(Math.random() * cellColors.length)]
+      };
+    }),
+  [count]);
+
+  // Track real-time positions of each cell
+  const cellPositions = useRef<[number, number, number][]>(
+    cells.map(cell => [...cell.position])
+  );
+  
+  // The edgeRef allows us to update edges in the render loop
+  const edgesRef = useRef<EdgeProps[]>([]);
+  
+  // Update cell position tracker
+  const updateCellPosition = useCallback((index: number, position: [number, number, number]) => {
+    cellPositions.current[index] = position;
+  }, []);
+  
+  // Connection colors - more subtle palette for the many connections
+  const connectionColors = useMemo(() => [
+    '#38BDF8', // Sky blue
+    '#0EA5E9', // Bright blue 
+    '#2DD4BF', // Teal
+    '#A78BFA', // Medium purple
+    '#94A3B8'  // Slate gray (more subtle)
+  ], []);
+  
+  // Dynamic edges that update based on cell positions in real-time
+  useFrame(() => {
+    const connections: EdgeProps[] = [];
+    
+    // Connect each cell with every other cell using their current actual positions
+    for (let i = 0; i < cellPositions.current.length; i++) {
+      // Use the actual current position of the first cell
+      const [x1, y1, z1] = cellPositions.current[i];
+      
+      // Connect to all other cells
+      for (let j = 0; j < cellPositions.current.length; j++) {
+        // Skip self-connections
+        if (i === j) continue;
+        
+        // Use the actual current position of the second cell
+        const [x2, y2, z2] = cellPositions.current[j];
+          
+        // Calculate distance between current positions
+        const distance = Math.sqrt(
+          Math.pow(x1 - x2, 2) +
+          Math.pow(y1 - y2, 2) +
+          Math.pow(z1 - z2, 2)
+        );
+        
+        // Calculate opacity based on distance (closer = more visible)
+        // Using a steeper falloff to ensure distant connections are very faint
+        const maxOpacity = 0.7;
+        const minOpacity = 0.05;
+        const opacity = Math.max(
+          minOpacity, 
+          maxOpacity - (distance / 20) * 0.65
+        );
+        
+        // Color based on the connected cells' colors
+        const connectionColorIndex = (i + j) % connectionColors.length;
+        const connectionColor = connectionColors[connectionColorIndex];
+        
+        connections.push({
+          start: [x1, y1, z1] as [number, number, number],
+          end: [x2, y2, z2] as [number, number, number],
+          color: connectionColor,
+          opacity: opacity
+        });
+      }
+    }
+    
+    edgesRef.current = connections;
+  });
+
+  return (
+    <group>
+      {/* Render all cells */}
+      {cells.map((cell, index) => (
+        <AnimatedSphere 
+          key={`cell-${index}`}
+          position={cell.position}
+          color={cell.color}
+          speed={cell.speed}
+          scale={cell.scale}
+          index={index}
+          updatePosition={updateCellPosition}
+        />
+      ))}
+      
+      {/* Render dynamic edges between cells */}
+      {edgesRef.current.map((edge, index) => (
+        <Edge
+          key={`edge-${index}`}
+          start={edge.start}
+          end={edge.end}
+          color={edge.color}
+          opacity={edge.opacity}
+        />
+      ))}
+    </group>
+  );
+};
+
+export default function HeroVisualization() {
+  return (
+    <Canvas 
+      camera={{ position: [0, 1, 14], fov: 50 }} // Camera slightly elevated to better view the horizontal DNA
+      className="w-full h-full absolute top-0 left-0 z-[-1]"
+      dpr={[1, 2]}
+      gl={{ 
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance"
+      }}
+    >
+      <ambientLight intensity={0.4} />
+      <pointLight position={[10, 10, 10]} intensity={0.7} color="#ffffff" />
+      <pointLight position={[-10, -10, -10]} intensity={0.3} color="#E0FFFF" />
+      <spotLight position={[0, 10, 0]} intensity={0.2} color="#7DF9FF" angle={0.6} penumbra={1} />
+      
+      {/* Floating cells with network connections */}
+      <FloatingCells count={10} />
+      
+      {/* Background sphere */}
+      <Sphere args={[30, 32, 32]} position={[0, 0, -15]}>
+        <meshBasicMaterial color="#ffffff" side={THREE.BackSide} />
+      </Sphere>
+      
+      <OrbitControls 
+        enableZoom={false} 
+        enablePan={false}
+        rotateSpeed={0.5}
+        autoRotate
+        autoRotateSpeed={0.5}
+      />
+    </Canvas>
+  );
+}
