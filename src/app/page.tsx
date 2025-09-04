@@ -240,7 +240,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
-                { name: 'Kiran Vanaja',title: 'Founder' ,bio: 'Research Assitant Professor at Roux Institute at Northeastern University' },
+                { name: 'Kiran Vanaja',title: 'Founder' ,bio: 'Research Assistant Professor at Roux Institute at Northeastern University' },
                 { name: 'Michaela Reagan', bio: 'MaineHealth Institute of Research' },
                 { name: 'Radha Mukherjee',  bio: 'Associate Research Scientist Memorial Slon kettering' },
                 { name: 'Satya Nandivada', title: 'Co-Founder & Chief Executive Officer', bio: 'MS Northeastern University' } 
