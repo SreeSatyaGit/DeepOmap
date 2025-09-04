@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import HeroVisualization from "../components/HeroVisualization";
-import DeepOMAPLogo from "../components/DeepOMAPLogo";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['mission', 'leadership', 'foundationalmodel', 'journey', 'contact'];
+      const sections = ['mission', 'team', 'foundationalmodel', 'journey', 'contact'];
       const scrollPosition = window.scrollY + 80;
 
       for (const section of sections) {
@@ -54,10 +53,7 @@ export default function Home() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             title="Back to top"
           >
-            <div className="flex-shrink-0 rounded-full overflow-hidden logo-hover-effect">
-              <DeepOMAPLogo size={56} className="animate-pulse-gentle group-hover:animate-none" />
-            </div>
-            <h1 className="text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0EA5E9] to-[#0284C7] ml-1">
+            <h1 className="text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0EA5E9] to-[#0284C7]">
               DeepOMAP
             </h1>
           </div>
@@ -67,7 +63,7 @@ export default function Home() {
             <ul className="flex space-x-6">
               {[
                 { name: 'Mission', id: 'mission' },
-                { name: 'Leadership', id: 'leadership' },
+                { name: 'Team', id: 'team' },
                 { name: 'Foundational Model', id: 'foundationalmodel' },
                 { name: 'Journey', id: 'journey' },
                 { name: 'Contact', id: 'contact' }
@@ -112,7 +108,7 @@ export default function Home() {
             <ul className="space-y-2">
               {[
                 { name: 'Mission', id: 'mission' },
-                { name: 'Leadership', id: 'leadership' },
+                { name: 'Team', id: 'team' },
                 { name: 'Foundational Model', id: 'foundationalmodel' },
                 { name: 'Journey', id: 'journey' },
                 { name: 'Contact', id: 'contact' }
@@ -214,9 +210,7 @@ export default function Home() {
               </div>
               <div className="md:w-1/2 space-y-6">
                 <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
-                  <p className="text-gray-700 text-lg leading-relaxed">
-                    At DeepOMAP, we're committed to transforming cancer diagnosis and treatment by reducing turnaround times from weeks to mere hours. Powered by cutting-edge AI and single-cell sequencing, our platform delivers early, accurate predictions of drug resistance—empowering oncologists to make timely, life-saving decisions. Rooted in Maine, our interdisciplinary team innovates solutions that overcome the unique challenges of rural healthcare, bringing advanced precision diagnostics directly to those who need them most.
-                  </p>
+                  
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
@@ -233,11 +227,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Leadership Section */}
-        <section id="leadership" className="py-24 bg-white">
+        {/* Team Section */}
+        <section id="team" className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Leadership</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Team</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Our multidisciplinary team combines expertise in oncology, artificial intelligence, and software engineering.
@@ -246,10 +240,9 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
-                { name: 'Kiran Vanaja', title: 'Founder & Principal Investigator', bio: 'Research Assitant Professor at Roux Institute at Northeastern University' },
-                { name: 'Michaela Reagan', title: 'Chief Scientific Officer ', bio: 'MaineHealth Institute of Research' },
-                { name: 'Radha Mukherjee', title: 'President ', bio: 'Associate Research Scientist Memorial Slon kettering' },
-                { name: 'Logan Schwartz', title: 'Vice President ', bio: 'Post-Doctoral at Roux Institute at Northeastern University ' },
+                { name: 'Kiran Vanaja',title: 'Founder' ,bio: 'Research Assitant Professor at Roux Institute at Northeastern University' },
+                { name: 'Michaela Reagan', bio: 'MaineHealth Institute of Research' },
+                { name: 'Radha Mukherjee',  bio: 'Associate Research Scientist Memorial Slon kettering' },
                 { name: 'Satya Nandivada', title: 'Co-Founder & Chief Executive Officer', bio: 'MS Northeastern University' } 
               ].map((member, idx) => (
                 <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden bg-white">
@@ -494,7 +487,7 @@ export default function Home() {
                 <ul className="space-y-2">
                   {[
                     { name: 'Mission', id: 'mission' },
-                    { name: 'Leadership', id: 'leadership' },
+                    { name: 'Team', id: 'team' },
                     { name: 'Foundational Model', id: 'foundationalmodel' },
                     { name: 'Journey', id: 'journey' },
                     { name: 'Contact', id: 'contact' }
