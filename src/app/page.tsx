@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import HeroVisualization from "../components/HeroVisualization";
+import DeepOMAPLogo from "../components/DeepOMAPLogo";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,9 +48,16 @@ export default function Home() {
     <div className="relative overflow-hidden">
       {/* Header with improved styling and smooth transitions */}
       <header className="w-full bg-white text-[#0F172A] p-4 md:p-6 fixed top-0 z-50 shadow-sm backdrop-blur-sm bg-opacity-95 transition-all duration-300">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <h1 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0EA5E9] to-[#0284C7]">
+        <div className="max-w-7xl ml-4 md:ml-8 flex items-center justify-between">
+          <div 
+            className="flex items-center gap-2 hover:gap-3 transition-all duration-300 cursor-pointer group" 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            title="Back to top"
+          >
+            <div className="flex-shrink-0 rounded-full overflow-hidden logo-hover-effect">
+              <DeepOMAPLogo size={56} className="animate-pulse-gentle group-hover:animate-none" />
+            </div>
+            <h1 className="text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0EA5E9] to-[#0284C7] ml-1">
               DeepOMAP
             </h1>
           </div>
