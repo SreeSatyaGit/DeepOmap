@@ -210,7 +210,9 @@ export default function Home() {
               </div>
               <div className="md:w-1/2 space-y-6">
                 <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
-                  
+                  <p className="text-gray-700 text-lg leading-relaxed">
+                    At DeepOMAP, we're committed to transforming cancer diagnosis and treatment by reducing turnaround times from weeks to mere hours. Powered by cutting-edge AI and single-cell sequencing, our platform delivers early, accurate predictions of drug resistance—empowering oncologists to make timely, life-saving decisions. Rooted in Maine, our interdisciplinary team innovates solutions that overcome the unique challenges of rural healthcare, bringing advanced precision diagnostics directly to those who need them most.
+                  </p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
@@ -233,9 +235,7 @@ export default function Home() {
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Team</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Our multidisciplinary team combines expertise in oncology, artificial intelligence, and software engineering.
-              </p>
+              
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
