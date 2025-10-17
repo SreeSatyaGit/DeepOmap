@@ -93,10 +93,6 @@ export const portfolioData = {
     extendedBio: "Throughout my career, I've had the privilege of working with diverse teams and tackling complex challenges across various industries. From healthcare AI platforms to e-commerce solutions, I've learned that great software comes from understanding both the technical requirements and the human needs behind every project.\n\nWhen I'm not coding, you'll find me contributing to open-source projects, exploring new technologies, or sharing knowledge with the developer community. I believe in continuous learning and staying curious about emerging trends in web development.",
     image: "/images/about/profile.jpg",
     highlights: [
-      { label: "Years Experience", value: "5+" },
-      { label: "Projects Completed", value: "50+" },
-      { label: "Open Source Contributions", value: "20+" },
-      { label: "Technologies Mastered", value: "15+" }
     ],
     location: "San Francisco, CA", // TODO: Update with your location
     availability: "Available for freelance projects"
