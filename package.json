@@ -11,9 +11,13 @@
   "dependencies": {
     "@react-three/drei": "^10.7.4",
     "@react-three/fiber": "^9.3.0",
+    "@types/nodemailer": "^7.0.2",
     "next": "^15.2.3",
+    "nodemailer": "^7.0.9",
+    "pdfjs-dist": "^5.4.296",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-pdf": "^10.2.0",
     "three": "^0.180.0"
   },
   "devDependencies": {

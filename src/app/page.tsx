@@ -53,6 +53,13 @@ export default function Home() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             title="Back to top"
           >
+            <Image
+              src="/logo/logoDeepOmap.png"
+              alt="DeepOMAP Logo"
+              width={40}
+              height={40}
+              className="w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:scale-110"
+            />
             <h1 className="text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0EA5E9] to-[#0284C7]">
               DeepOMAP
             </h1>

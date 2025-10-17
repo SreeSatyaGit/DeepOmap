@@ -5,13 +5,13 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial, Line } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Cell colors - limited to 5 distinct colors
+// Cell colors - new purple/coral palette
 const cellColors = [
-  '#38BDF8', // Sky Blue
-  '#0EA5E9', // Bright Blue
-  '#8B5CF6', // Violet
-  '#4ADE80', // Bright Green
-  '#2DD4BF'  // Teal
+  '#6366F1', // Indigo
+  '#8B5CF6', // Purple
+  '#F97316', // Orange
+  '#FB923C', // Light Orange
+  '#A78BFA'  // Light Purple
 ];
 
 // Helper function to smoothly transition between colors
@@ -188,12 +188,12 @@ const FloatingCells = ({ count = 8 }: FloatingCellsProps) => {
     cellPositions.current[index] = position;
   }, []);
   
-  // Connection colors - more subtle palette for the many connections
+  // Connection colors - updated palette for the new theme
   const connectionColors = useMemo(() => [
-    '#38BDF8', // Sky blue
-    '#0EA5E9', // Bright blue 
-    '#2DD4BF', // Teal
-    '#A78BFA', // Medium purple
+    '#6366F1', // Indigo
+    '#8B5CF6', // Purple 
+    '#F97316', // Orange
+    '#A78BFA', // Light purple
     '#94A3B8'  // Slate gray (more subtle)
   ], []);
   
@@ -289,8 +289,8 @@ export default function HeroVisualization() {
     >
       <ambientLight intensity={0.4} />
       <pointLight position={[10, 10, 10]} intensity={0.7} color="#ffffff" />
-      <pointLight position={[-10, -10, -10]} intensity={0.3} color="#E0FFFF" />
-      <spotLight position={[0, 10, 0]} intensity={0.2} color="#7DF9FF" angle={0.6} penumbra={1} />
+      <pointLight position={[-10, -10, -10]} intensity={0.3} color="#F97316" />
+      <spotLight position={[0, 10, 0]} intensity={0.2} color="#8B5CF6" angle={0.6} penumbra={1} />
       
       {/* Floating cells with network connections */}
       <FloatingCells count={10} />
