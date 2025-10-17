@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-  title: "Satya Nandivada - AI Engineer, Researcher and Founding Engineer",
+  title: "Satya Nandivada ",
   description: "Building deep learning systems that decode cellular complexity and transform single-cell data into actionable discoveries for precision medicine.",
   keywords: "AI engineer, computational biology, deep learning, precision medicine, single-cell data, DeepOMAP, GAME LLC",
   authors: [{ name: "Satya Nandivada" }],
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     apple: "/logo/logoDeepOmap.png",
   },
   openGraph: {
-    title: "Satya Nandivada - AI Engineer, Researcher and Founding Engineer",
+    title: "Satya Nandivada ",
     description: "Building deep learning systems that decode cellular complexity and transform single-cell data into actionable discoveries for precision medicine",
     type: "website",
     locale: "en_US",

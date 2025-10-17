@@ -1,7 +1,7 @@
 export const portfolioData = {
   hero: {
     name: "Satya Nandivada",
-    tagline: "AI Engineer, Researcher & Founder",
+    tagline: "",
     description: "Building deep learning systems that decode cellular complexity and transform single-cell data into actionable discoveries for precision medicine.",
     cta: { 
       primary: "View Resume", 
