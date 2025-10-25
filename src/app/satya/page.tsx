@@ -212,14 +212,6 @@ export default function SatyaPage() {
                     {portfolioData.about.bio}
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  {portfolioData.about.highlights.map((highlight, idx) => (
-                    <div key={idx} className="bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
-                      <div className="text-[#6366F1] text-3xl font-bold mb-2">{highlight.value}</div>
-                      <p className="text-gray-600">{highlight.label}</p>
-                  </div>
-                  ))}
-                </div>
               </ScrollReveal>
             </div>
           </div>
