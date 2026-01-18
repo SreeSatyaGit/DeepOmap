@@ -10,7 +10,6 @@ Visit the live portfolio: [https://bharadwaja2000.github.io/Satyaweb/](https://b
 
 - **Modern Design**: Clean, professional layout with smooth animations
 - **Responsive**: Fully responsive design that works on all devices
-- **Interactive Resume**: Dynamic resume section with PDF viewing capabilities
 - **3D Visualizations**: Interactive 3D hero section using Three.js
 - **Contact Form**: Functional contact form with email integration
 - **Achievements**: Showcase of professional achievements with PDF attachments
@@ -37,7 +36,6 @@ src/
 ├── components/         # React components
 │   ├── AchievementCard.tsx
 │   ├── ContactForm.tsx
-│   ├── DynamicResumeSection.tsx
 │   ├── HeroVisualization.tsx
 │   ├── ProjectCard.tsx
 │   ├── ScrollReveal.tsx

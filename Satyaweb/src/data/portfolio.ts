@@ -3,12 +3,12 @@ export const portfolioData = {
     name: "Satya Nandivada",
     tagline: "",
     description: "Building deep learning systems that decode cellular complexity and transform single-cell data into actionable discoveries for precision medicine.",
-    cta: { 
-      primary: "View Resume", 
-      secondary: "Get in Touch" 
+    cta: {
+      primary: "Get in Touch",
+      secondary: "GitHub"
     }
   },
-  
+
   projects: [
     {
       id: 1,
@@ -56,7 +56,7 @@ export const portfolioData = {
       featured: false
     }
   ],
-  
+
   skills: {
     frontend: [
       { name: "React", level: 90, icon: "⚛️" },
@@ -87,141 +87,91 @@ export const portfolioData = {
       { name: "Precision Medicine", level: 85, icon: "⚕️" }
     ]
   },
-  
+
   about: {
-    bio: "An engineer, researcher, and founder working at the intersection of AI and biology. I build deep learning systems that decode cellular complexity and turn them into insights for precision medicine. As the founder of DeepOMAP, I'm developing AI-driven platforms to transform single-cell data into actionable discoveries for leukemia research, while also leading GAME LLC, a sports-tech startup empowering athletes through intelligent onboarding and matchmaking. My work bridges computational biology, scalable systems, and human-centered design — driven by a single mission: to make complex science and technology both explainable and impactful.",
-    extendedBio: "Throughout my career, I've had the privilege of working with diverse teams and tackling complex challenges across various industries. From healthcare AI platforms to e-commerce solutions, I've learned that great software comes from understanding both the technical requirements and the human needs behind every project.\n\nWhen I'm not coding, you'll find me contributing to open-source projects, exploring new technologies, or sharing knowledge with the developer community. I believe in continuous learning and staying curious about emerging trends in web development.",
+    bio: "I’m a Machine Learning Engineer and Computational Systems Biology researcher focused on building scalable intelligent systems. My work bridges deep learning, graph modeling, and biological data, with hands-on experience in PyTorch, Transformers, Graph Neural Networks, and single-cell RNA sequencing (scRNA-seq).\n\nI built DeepOMAPNet, a multimodal framework that predicts surface protein expression from RNA using kNN cell graphs, Graph Attention Networks, and Transformer-based fusion with cross-modal attention, graph positional encoding, and efficiency optimizations like sparsification and mixed precision. I’ve also developed end-to-end pipelines combining representation learning (parametric UMAP) with predictive modeling (sciPENN and logistic regression) to classify AML subtypes from large-scale single-cell datasets.\n\nBeyond data-driven models, I build hybrid mechanistic + learning systems, including universal differential equation (UDE) models to study drug response and resistance. I’m driven by challenging problems, strong engineering, and delivering reliable, interpretable, high-impact solutions.",
+    extendedBio: "I’m a Machine Learning Engineer and Computational Systems Biology researcher focused on building scalable intelligent systems. My work bridges deep learning, graph modeling, and biological data, with hands-on experience in PyTorch, Transformers, Graph Neural Networks, and single-cell RNA sequencing (scRNA-seq).\n\nI built DeepOMAPNet, a multimodal framework that predicts surface protein expression from RNA using kNN cell graphs, Graph Attention Networks, and Transformer-based fusion with cross-modal attention, graph positional encoding, and efficiency optimizations like sparsification and mixed precision. I’ve also developed end-to-end pipelines combining representation learning (parametric UMAP) with predictive modeling (sciPENN and logistic regression) to classify AML subtypes from large-scale single-cell datasets.\n\nBeyond data-driven models, I build hybrid mechanistic + learning systems, including universal differential equation (UDE) models to study drug response and resistance. I’m driven by challenging problems, strong engineering, and delivering reliable, interpretable, high-impact solutions.",
     image: "/images/about/profile.jpg",
-    highlights: [
-    ],
+    highlights: [] as { label: string; value: string }[],
     location: "San Francisco, CA", // TODO: Update with your location
     availability: "Available for freelance projects"
   },
-  
+
   github: {
     title: "GitHub Projects",
     subtitle: "Open source projects and repositories showcasing my development work",
     projects: [
       {
         id: 1,
-        name: "DeepOMAP",
-        description: "AI-powered platform for early cancer detection and personalized treatment planning using single-cell data analysis and machine learning algorithms.",
+        name: "DeepOMAPNet",
+        description: "A deep learning model for analyzing single-cell omics data, combining GAT and Transformer layers for cross-modal attention between RNA and ADT.",
         language: "Python",
-        stars: 42,
-        forks: 8,
-        lastUpdated: "2024-01-15",
-        url: "https://github.com/username/deepomap",
-        topics: ["machine-learning", "cancer-detection", "single-cell-analysis", "ai"]
+        stars: 0,
+        forks: 0,
+        lastUpdated: "2024-05-20",
+        url: "https://github.com/SreeSatyaGit/DeepOMAPNet",
+        topics: ["deep-learning", "bioinformatics", "single-cell", "omics", "transformer"]
       },
       {
         id: 2,
-        name: "Bioinformatics Pipeline",
-        description: "Automated pipeline for processing genomic data with advanced visualization tools and statistical analysis capabilities.",
-        language: "R",
-        stars: 28,
-        forks: 12,
-        lastUpdated: "2024-01-10",
-        url: "https://github.com/username/bioinformatics-pipeline",
-        topics: ["bioinformatics", "genomics", "data-analysis", "r"]
+        name: "LabWebsite",
+        description: "A professional research laboratory website project built using React, providing an interactive online presence for academic research activities.",
+        language: "JavaScript",
+        stars: 0,
+        forks: 0,
+        lastUpdated: "2024-05-18",
+        url: "https://github.com/SreeSatyaGit/LabWebsite",
+        topics: ["react", "web-development", "research-lab", "frontend"]
       },
       {
         id: 3,
-        name: "React Component Library",
-        description: "Comprehensive React component library with TypeScript support, Storybook documentation, and comprehensive testing suite.",
-        language: "TypeScript",
-        stars: 156,
-        forks: 23,
-        lastUpdated: "2024-01-08",
-        url: "https://github.com/username/react-components",
-        topics: ["react", "typescript", "component-library", "storybook"]
+        name: "Single-Cell Melanoma Pathway Analysis",
+        description: "R-based computational pipeline for analyzing scRNA-seq data with a focus on pathway dynamics and drug treatment effects in melanoma.",
+        language: "R",
+        stars: 0,
+        forks: 0,
+        lastUpdated: "2024-05-15",
+        url: "https://github.com/SreeSatyaGit/Single-Cell-Melanoma-Pathway-Analysis",
+        topics: ["r", "bioinformatics", "melanoma", "scRNA-seq", "pathway-analysis"]
       },
       {
         id: 4,
-        name: "Data Visualization Toolkit",
-        description: "Interactive data visualization toolkit built with D3.js and React, featuring customizable charts and real-time data updates.",
+        name: "ECE5642Final - Exoplanet Dashboard",
+        description: "Interactive transit dashboard featuring a React/Tailwind frontend and a Flask/pyvo REST API to fetch NASA Exoplanet Archive data.",
         language: "JavaScript",
-        stars: 89,
-        forks: 15,
-        lastUpdated: "2024-01-05",
-        url: "https://github.com/username/data-viz-toolkit",
-        topics: ["d3js", "data-visualization", "react", "charts"]
+        stars: 0,
+        forks: 0,
+        lastUpdated: "2024-05-10",
+        url: "https://github.com/SreeSatyaGit/ECE5642Final",
+        topics: ["react", "flask", "data-visualization", "nasa-api", "astronomy"]
       },
       {
         id: 5,
-        name: "Machine Learning Utils",
-        description: "Collection of utility functions and helper classes for machine learning workflows, including data preprocessing and model evaluation.",
+        name: "SummitChatbot",
+        description: "AI conversational onboarding system for student-athletes, using fine-tuned models for intelligent data extraction and multilingual support.",
         language: "Python",
-        stars: 67,
-        forks: 19,
-        lastUpdated: "2024-01-03",
-        url: "https://github.com/username/ml-utils",
-        topics: ["machine-learning", "python", "utilities", "data-science"]
+        stars: 0,
+        forks: 0,
+        lastUpdated: "2024-05-05",
+        url: "https://github.com/SreeSatyaGit/SummitChatbot",
+        topics: ["ai", "chatbot", "python", "nlp", "startup"]
       },
       {
         id: 6,
-        name: "Portfolio Website",
-        description: "Modern, responsive portfolio website built with Next.js, featuring 3D animations and interactive components.",
+        name: "DeepOmap Platform",
+        description: "Modern Next.js application for genomics data visualization and advanced multi-omics analysis and discovery.",
         language: "TypeScript",
-        stars: 34,
-        forks: 7,
-        lastUpdated: "2024-01-01",
-        url: "https://github.com/username/portfolio",
-        topics: ["nextjs", "react", "typescript", "portfolio"]
+        stars: 0,
+        forks: 0,
+        lastUpdated: "2024-05-01",
+        url: "https://github.com/SreeSatyaGit/DeepOmap",
+        topics: ["nextjs", "typescript", "genomics", "data-viz", "biotech"]
       }
     ]
   },
-  
-  resume: {
-    title: "Resume",
-    subtitle: "A comprehensive overview of my experience, skills, and achievements",
-    pdfPath: "/resume/Satya_Nandivada_Resume.pdf", // TODO: Place your resume PDF here
-    sections: [
-      {
-        title: "Experience",
-        items: [
-          {
-            position: "Founder & CEO",
-            company: "DeepOMAP",
-            duration: "2024 - Present",
-            description: "Leading AI-driven platform development for single-cell data analysis and leukemia research. Building deep learning systems that decode cellular complexity for precision medicine.",
-            highlights: ["AI platform development", "Single-cell data analysis", "Leukemia research", "Team leadership"]
-          },
-          {
-            position: "Founder & CEO", 
-            company: "GAME LLC",
-            duration: "2023 - Present",
-            description: "Sports-tech startup empowering athletes through intelligent onboarding and matchmaking systems.",
-            highlights: ["Sports technology", "Athlete empowerment", "Intelligent systems", "Startup leadership"]
-          }
-        ]
-      },
-      {
-        title: "Education",
-        items: [
-          {
-            position: "Master of Science",
-            company: "Northeastern University",
-            duration: "2022 - 2024",
-            description: "Advanced studies in computational biology and AI applications in healthcare.",
-            highlights: ["Computational Biology", "AI in Healthcare", "Research"]
-          }
-        ]
-      },
-      {
-        title: "Key Skills",
-        items: [
-          {
-            position: "Technical Expertise",
-            company: "Core Competencies",
-            duration: "5+ Years",
-            description: "Deep learning, computational biology, single-cell analysis, AI system development, and precision medicine applications.",
-            highlights: ["Deep Learning", "Computational Biology", "AI Systems", "Precision Medicine"]
-          }
-        ]
-      }
-    ]
-  },
-  
+
+
+
   achievements: {
     title: "Achievements & Recognition",
     subtitle: "Milestones and accomplishments in my career journey",
@@ -236,10 +186,10 @@ export const portfolioData = {
         icon: "🏥",
         pdfPath: "/achievements/Pitch_Day.pdf"
       },
-      
+
     ]
   },
-  
+
   contact: {
     email: "sreesatyanandivada@gmail.com",
     phone: "[YOUR PHONE]", // TODO: Replace with your phone
@@ -251,7 +201,7 @@ export const portfolioData = {
       email: "sreesatyanandivada@gmail.com"
     }
   },
-  
+
   blog: {
     posts: [
       {

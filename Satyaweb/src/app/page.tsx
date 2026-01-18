@@ -1,11 +1,10 @@
 'use client';
 
-import Image from "next/image";
+
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import HeroVisualization from "../components/HeroVisualization";
+import HeroGallery from "../components/HeroGallery";
 import ScrollReveal from "../components/ScrollReveal";
-import DynamicResumeSection from "../components/DynamicResumeSection";
 import { SkillsGrid } from "../components/SkillBar";
 import AchievementCard from "../components/AchievementCard";
 import ContactForm from "../components/ContactForm";
@@ -18,7 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'github', 'resume', 'skills', 'achievements', 'contact'];
+      const sections = ['about', 'github', 'skills', 'achievements', 'contact'];
       const scrollPosition = window.scrollY + 80;
 
       for (const section of sections) {
@@ -42,7 +41,7 @@ export default function Home() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -55,8 +54,8 @@ export default function Home() {
       {/* Header */}
       <header className="w-full bg-white text-[#0F172A] p-4 md:p-6 fixed top-0 z-50 shadow-sm backdrop-blur-sm bg-opacity-95 transition-all duration-300">
         <div className="max-w-7xl ml-4 md:ml-8 flex items-center justify-between">
-          <div 
-            className="flex items-center gap-2 hover:gap-3 transition-all duration-300 cursor-pointer group" 
+          <div
+            className="flex items-center gap-2 hover:gap-3 transition-all duration-300 cursor-pointer group"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             title="Back to top"
           >
@@ -64,14 +63,13 @@ export default function Home() {
               {portfolioData.hero.name}
             </h1>
           </div>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
               {[
                 { name: 'About', id: 'about' },
                 { name: 'GitHub', id: 'github' },
-                { name: 'Resume', id: 'resume' },
                 { name: 'Skills', id: 'skills' },
                 { name: 'Achievements', id: 'achievements' },
                 { name: 'Contact', id: 'contact' }
@@ -93,16 +91,16 @@ export default function Home() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="md:hidden text-[#0F172A] transition-transform duration-300 hover:scale-110"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
           >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor" 
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
               className={`w-6 h-6 transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : ''}`}
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
@@ -117,7 +115,6 @@ export default function Home() {
               {[
                 { name: 'About', id: 'about' },
                 { name: 'GitHub', id: 'github' },
-                { name: 'Resume', id: 'resume' },
                 { name: 'Skills', id: 'skills' },
                 { name: 'Achievements', id: 'achievements' },
                 { name: 'Contact', id: 'contact' }
@@ -138,45 +135,15 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative h-screen overflow-hidden pt-20">
-        {/* 3D Visualization Background */}
-        <div className="w-full h-full absolute top-0 left-0 z-[-1]">
-          <HeroVisualization />
+      <section id="hero" className="relative h-screen overflow-hidden flex items-center justify-center">
+        <div className="absolute inset-0 z-0">
+          <HeroGallery />
         </div>
-        
-        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-transparent z-0"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-          <div className="animate-fade-in mt-[-50px] md:mt-[-80px]">
-            <h2 className="text-4xl md:text-6xl font-bold text-[#0F172A] drop-shadow-sm leading-tight">
-              <span className="block animate-slide-up">{portfolioData.hero.name}</span>
-              <span className="block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] animate-slide-up-delay">
-                {portfolioData.hero.tagline}
-              </span>
-            </h2>
-            <p className="mt-5 text-lg md:text-xl text-[#475569] max-w-2xl font-light animate-fade-in-delay">
-              {portfolioData.hero.description}
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6 animate-fade-in-delay-2">
-              <button
-                onClick={() => scrollToSection('resume')}
-                className="w-full sm:w-auto group relative bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#6366F1]/30 hover:scale-105"
-              >
-                <span className="relative z-10">{portfolioData.hero.cta.primary}</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-              </button>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="w-full sm:w-auto group relative border-2 border-[#6366F1] text-[#0F172A] px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105"
-              >
-                <span className="relative z-10 group-hover:text-white transition-colors duration-300">{portfolioData.hero.cta.secondary}</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-              </button>
-            </div>
-          </div>
-        </div>
+
+
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
           <button onClick={() => scrollToSection('about')} aria-label="Scroll Down">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#0F172A] hover:text-[#6366F1] transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white hover:text-[#8183FF] transition-colors duration-300 drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </button>
@@ -189,44 +156,29 @@ export default function Home() {
         <section id="about" className="py-24 bg-[#F8FAFC] transition-all duration-500">
           <div className="max-w-6xl mx-auto px-6">
             <ScrollReveal animation="fade-up">
-            <div className="text-center mb-12">
+              <div className="text-center mb-12">
                 <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">About Me</h3>
                 <div className="h-1 w-20 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] mx-auto mb-6 transition-all duration-300"></div>
-            </div>
+              </div>
             </ScrollReveal>
 
-            <div className="flex flex-col md:flex-row items-center gap-12">
-              <ScrollReveal animation="slide-left" className="md:w-[40%]">
-                <div className="group">
-                <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:scale-105">
-                  <div className="w-full h-80 relative overflow-hidden">
-                    <Image
-                        src={portfolioData.about.image}
-                        alt="About Me"
-                      fill
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
-                        sizes="(max-width: 768px) 100vw, 40vw"
-                      priority
-                    />
-                  </div>
-                </div>
-              </div>
-              </ScrollReveal>
-              
-              <ScrollReveal animation="slide-right" className="md:w-[60%] space-y-6">
-                <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
-                  <p className="text-gray-700 text-lg leading-relaxed">
+            <div className="max-w-4xl mx-auto">
+              <ScrollReveal animation="fade-up" className="space-y-6">
+                <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl">
+                  <p className="text-gray-700 text-lg md:text-xl leading-relaxed whitespace-pre-line">
                     {portfolioData.about.bio}
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  {portfolioData.about.highlights.map((highlight, idx) => (
-                    <div key={idx} className="bg-white p-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
-                      <div className="text-[#6366F1] text-3xl font-bold mb-2">{highlight.value}</div>
-                      <p className="text-gray-600">{highlight.label}</p>
+                {portfolioData.about.highlights && portfolioData.about.highlights.length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {portfolioData.about.highlights.map((highlight: { label: string; value: string }, idx) => (
+                      <div key={idx} className="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
+                        <div className="text-[#6366F1] text-3xl font-bold mb-2">{highlight.value}</div>
+                        <p className="text-gray-600 font-medium">{highlight.label}</p>
+                      </div>
+                    ))}
                   </div>
-                  ))}
-                </div>
+                )}
               </ScrollReveal>
             </div>
           </div>
@@ -252,7 +204,7 @@ export default function Home() {
                 </ScrollReveal>
               ))}
             </div>
-            
+
             {/* Debug info */}
             <div className="mt-8 p-4 bg-gray-100 rounded">
               <p className="text-sm text-gray-600">
@@ -262,27 +214,16 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Resume Section */}
-        <section id="resume" className="py-24 bg-[#F8FAFC]">
-          <div className="max-w-6xl mx-auto px-6">
-            <ScrollReveal animation="fade-up">
-              <DynamicResumeSection 
-                title={portfolioData.resume.title}
-                subtitle={portfolioData.resume.subtitle}
-                pdfPath={portfolioData.resume.pdfPath}
-              />
-            </ScrollReveal>
-          </div>
-        </section>
+
 
         {/* Skills Section */}
         <section id="skills" className="py-24 bg-[#F8FAFC]">
           <div className="max-w-6xl mx-auto px-6">
             <ScrollReveal animation="fade-up">
-            <div className="text-center mb-12">
+              <div className="text-center mb-12">
                 <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Skills & Technologies</h3>
                 <div className="h-1 w-20 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] mx-auto mb-6"></div>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+                <p className="text-gray-600 max-w-2xl mx-auto">
                   Technologies and tools I work with to bring ideas to life.
                 </p>
               </div>
@@ -309,7 +250,7 @@ export default function Home() {
         <section id="achievements" className="py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <ScrollReveal animation="fade-up">
-            <div className="text-center mb-12">
+              <div className="text-center mb-12">
                 <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">{portfolioData.achievements.title}</h3>
                 <div className="h-1 w-20 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] mx-auto mb-6"></div>
                 <p className="text-gray-600 max-w-2xl mx-auto">
@@ -337,10 +278,10 @@ export default function Home() {
                   <h2 className="inline-block text-sm font-bold text-[#6366F1] uppercase tracking-wider mb-2">Get In Touch</h2>
                   <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Let's Work Together</h3>
                   <div className="h-1 w-20 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] mb-6"></div>
-                <p className="text-gray-700 mb-8">
+                  <p className="text-gray-700 mb-8">
                     I'm always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!
                   </p>
-                  
+
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] rounded-full flex items-center justify-center">
@@ -350,7 +291,7 @@ export default function Home() {
                       </div>
                       <span className="text-gray-700">{portfolioData.contact.email}</span>
                     </div>
-                    
+
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] rounded-full flex items-center justify-center">
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -365,20 +306,20 @@ export default function Home() {
                   <div className="flex space-x-4 mt-8">
                     <a href={portfolioData.contact.social.github} className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#6366F1] hover:text-white transition-all duration-300 hover:scale-110">
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                       </svg>
                     </a>
                     <a href={portfolioData.contact.social.linkedin} className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#6366F1] hover:text-white transition-all duration-300 hover:scale-110">
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                       </svg>
                     </a>
                     <a href={`mailto:${portfolioData.contact.social.email}`} className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#6366F1] hover:text-white transition-all duration-300 hover:scale-110">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
-                </a>
-              </div>
+                    </a>
+                  </div>
                 </div>
               </ScrollReveal>
 
@@ -408,13 +349,12 @@ export default function Home() {
                   {[
                     { name: 'About', id: 'about' },
                     { name: 'GitHub', id: 'github' },
-                    { name: 'Resume', id: 'resume' },
                     { name: 'Skills', id: 'skills' },
                     { name: 'Achievements', id: 'achievements' },
                     { name: 'Contact', id: 'contact' }
                   ].map((link) => (
                     <li key={link.id}>
-                      <button 
+                      <button
                         onClick={() => scrollToSection(link.id)}
                         className="text-gray-300 hover:text-[#6366F1] transition-colors duration-300"
                       >
@@ -441,8 +381,8 @@ export default function Home() {
                   <li>
                     <a href={`mailto:${portfolioData.contact.social.email}`} className="text-gray-300 hover:text-[#6366F1] transition-colors duration-300">
                       Email
-                      </a>
-                    </li>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
