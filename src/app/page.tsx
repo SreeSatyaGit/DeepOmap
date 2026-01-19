@@ -294,9 +294,18 @@ export default function Home() {
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Foundational AI Model</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-gray-600 max-w-2xl mx-auto mb-8">
                 DeepOMAP's platform analyzes single-cell multi omics datasets to predict progression, and recommend personalized treatments.
               </p>
+              <Link
+                href="/model"
+                className="inline-flex items-center bg-[#0EA5E9] text-white py-3 px-8 rounded-full font-bold shadow-lg transition-all duration-300 hover:bg-[#0284C7] hover:scale-105 hover:shadow-xl active:scale-95"
+              >
+                Access Model Weights & Analyze
+                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-8 items-center bg-white rounded-2xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl">
