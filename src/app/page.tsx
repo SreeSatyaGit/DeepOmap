@@ -35,7 +35,7 @@ export default function Home() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -48,23 +48,24 @@ export default function Home() {
       {/* Header with improved styling and smooth transitions */}
       <header className="w-full bg-white text-[#0F172A] p-4 md:p-6 fixed top-0 z-50 shadow-sm backdrop-blur-sm bg-opacity-95 transition-all duration-300">
         <div className="max-w-7xl ml-4 md:ml-8 flex items-center justify-between">
-          <div 
-            className="flex items-center gap-2 hover:gap-3 transition-all duration-300 cursor-pointer group" 
+          <div
+            className="flex items-center gap-2 hover:gap-3 transition-all duration-300 cursor-pointer group"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             title="Back to top"
           >
             <Image
               src="/logo/logoDeepOmap.png"
               alt="DeepOMAP Logo"
-              width={40}
-              height={40}
-              className="w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:scale-110"
+              width={48}
+              height={48}
+              unoptimized
+              className="w-10 h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-110"
             />
             <h1 className="text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0EA5E9] to-[#0284C7]">
               DeepOMAP
             </h1>
           </div>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
@@ -92,16 +93,16 @@ export default function Home() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="md:hidden text-[#0F172A] transition-transform duration-300 hover:scale-110"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
           >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor" 
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
               className={`w-6 h-6 transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : ''}`}
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
@@ -147,12 +148,12 @@ export default function Home() {
           playsInline
         />
         */}
-        
+
         {/* 3D Visualization Background */}
         <div className="w-full h-full absolute top-0 left-0 z-[-1]">
           <HeroVisualization />
         </div>
-        
+
         <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-transparent z-0"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
           <div className="animate-fade-in mt-[-50px] md:mt-[-80px]"> {/* Moved up to bring closer to buttons */}
@@ -242,15 +243,15 @@ export default function Home() {
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Team</h3>
               <div className="h-1 w-20 bg-[#50C878] mx-auto mb-6"></div>
-              
+
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {[
-                { name: 'Kiran Vanaja',title: 'Founder' ,bio: 'Research Assistant Professor at Roux Institute at Northeastern University' },
+                { name: 'Kiran Vanaja', title: 'Founder', bio: 'Research Assistant Professor at Roux Institute at Northeastern University' },
                 { name: 'Michaela Reagan', bio: 'MaineHealth Institute of Research' },
-                { name: 'Radha Mukherjee',  bio: 'Associate Research Scientist Memorial Slon kettering' },
-                { name: 'Satya Nandivada', title: 'Co-Founder & Chief Executive Officer', bio: 'MS Northeastern University' } 
+                { name: 'Radha Mukherjee', bio: 'Associate Research Scientist Memorial Slon kettering' },
+                { name: 'Satya Nandivada', title: 'Co-Founder & Chief Executive Officer', bio: 'MS Northeastern University' }
               ].map((member, idx) => (
                 <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden bg-white">
                   <div className="aspect-square overflow-hidden">
@@ -415,7 +416,7 @@ export default function Home() {
                   Interested in learning more about DeepOMAP? find us at the Vanaja Lab at the Roux Institute, Northeastern University, Portland, Maine.
                 </p>
                 <a
-                  href="https://vanajasysbiolab.org/" 
+                  href="https://vanajasysbiolab.org/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#50C878] underline hover:text-[#3ca96a] transition-colors duration-300"
@@ -483,7 +484,17 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
               <div className="col-span-1 md:col-span-2">
-                <h4 className="text-xl font-bold mb-4">DeepOMAP</h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <Image
+                    src="/logo/logoDeepOmap.png"
+                    alt="DeepOMAP Logo"
+                    width={40}
+                    height={40}
+                    unoptimized
+                    className="w-10 h-10"
+                  />
+                  <h4 className="text-xl font-bold">DeepOMAP</h4>
+                </div>
                 <p className="text-gray-300 mb-6 max-w-md">
                   Revolutionizing cancer care through AI-powered diagnostic tools and personalized treatment planning.
                 </p>
@@ -500,7 +511,7 @@ export default function Home() {
                     { name: 'Contact', id: 'contact' }
                   ].map((link) => (
                     <li key={link.id}>
-                      <button 
+                      <button
                         onClick={() => scrollToSection(link.id)}
                         className="text-gray-300 hover:text-[#50C878] transition-colors duration-300"
                       >

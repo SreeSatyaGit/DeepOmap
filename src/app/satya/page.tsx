@@ -80,6 +80,14 @@ export default function SatyaPage() {
       <header className="w-full bg-white text-[#0F172A] p-4 md:p-6 fixed top-0 z-50 shadow-sm backdrop-blur-sm bg-opacity-95 transition-all duration-300">
         <div className="max-w-7xl ml-4 md:ml-8 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 hover:gap-3 transition-all duration-300 cursor-pointer group">
+            <Image
+              src="/logo/logoDeepOmap.png"
+              alt="DeepOMAP Logo"
+              width={48}
+              height={48}
+              unoptimized
+              className="w-10 h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-110"
+            />
             <h1 className="text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0EA5E9] to-[#0284C7]">
               Satya Nandivada
             </h1>
@@ -347,9 +355,19 @@ export default function SatyaPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
               <div className="col-span-1 md:col-span-2">
-                <h4 className="text-xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#6366F1] to-[#8B5CF6]">
-                  {portfolioData.hero.name}
-                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <Image
+                    src="/logo/logoDeepOmap.png"
+                    alt="DeepOMAP Logo"
+                    width={36}
+                    height={36}
+                    unoptimized
+                    className="w-9 h-9"
+                  />
+                  <h4 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366F1] to-[#8B5CF6]">
+                    {portfolioData.hero.name}
+                  </h4>
+                </div>
                 <p className="text-gray-300 mb-6 max-w-md">
                   Full-stack developer passionate about creating elegant solutions that bridge the gap between design and technology.
                 </p>
