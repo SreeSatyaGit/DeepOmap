@@ -353,16 +353,16 @@ export default function Home() {
               <div className="space-y-16">
                 {[
                   {
-                    title: 'DeepOMAP Founded',
-                    date: 'Jan 2025',
-                    result: 'Registered as Maine-based LLC',
-                    align: 'right'
-                  },
-                  {
                     title: 'Selected for MIT NSF I-Corps Program',
                     date: 'Mar 2025',
                     result: 'Customer discovery and validation',
                     description: 'Developed initial prototype and conducted user interviews.',
+                    align: 'right'
+                  },
+                  {
+                    title: 'DeepOMAP Founded',
+                    date: 'Jan 2025',
+                    result: 'Registered as Maine-based LLC',
                     align: 'left'
                   },
                   {
