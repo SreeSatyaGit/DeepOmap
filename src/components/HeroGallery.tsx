@@ -5,14 +5,14 @@ import Image from 'next/image';
 
 const images = [
     {
-        src: '/images/gallery/Graduated.jpeg',
-        alt: 'Graduation Day',
-        caption: 'Celebrating Graduation Day'
-    },
-    {
         src: '/images/gallery/ICSB_presentation.jpg',
         alt: 'ICSB Presentation',
-        caption: 'Presenting research findings at ICSB'
+        caption: 'Presenting research findings at IIT Bombay'
+    },
+    {
+        src: '/images/gallery/ICSB_me_and_kiran.jpg',
+        alt: 'ICSB Conference',
+        caption: 'Dr.Vanaja and Me at ISCB 2024'
     }
 ];
 

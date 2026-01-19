@@ -12,6 +12,27 @@ import ContactForm from "../../components/ContactForm";
 import { portfolioData } from "../../data/portfolio";
 
 export default function SatyaPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Satya Nandivada",
+    "jobTitle": "Machine Learning Engineer",
+    "description": "Machine Learning Engineer and researcher building high-impact intelligent systems at the intersection of Deep Learning, GNNs, and Computational Systems Biology.",
+    "url": "https://deepomap.com/satya",
+    "sameAs": [
+      portfolioData.contact.social.linkedin,
+      portfolioData.contact.social.github
+    ],
+    "knowsAbout": [
+      "Machine Learning",
+      "Deep Learning",
+      "Computational Systems Biology",
+      "scRNA-seq",
+      "PyTorch",
+      "Transformers",
+      "Graph Neural Networks"
+    ]
+  };
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
@@ -51,6 +72,10 @@ export default function SatyaPage() {
 
   return (
     <div className="relative overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Header */}
       <header className="w-full bg-white text-[#0F172A] p-4 md:p-6 fixed top-0 z-50 shadow-sm backdrop-blur-sm bg-opacity-95 transition-all duration-300">
         <div className="max-w-7xl ml-4 md:ml-8 flex items-center justify-between">
@@ -160,27 +185,10 @@ export default function SatyaPage() {
               </div>
             </ScrollReveal>
 
-            <div className="flex flex-col md:flex-row items-center gap-12">
-              <ScrollReveal animation="slide-left" className="md:w-[40%]">
-                <div className="group">
-                  <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:scale-105">
-                    <div className="w-full h-80 relative overflow-hidden">
-                      <Image
-                        src={portfolioData.about.image}
-                        alt="About Me"
-                        fill
-                        className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
-                        sizes="(max-width: 768px) 100vw, 40vw"
-                        priority
-                      />
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal animation="slide-right" className="md:w-[60%] space-y-6">
-                <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
-                  <p className="text-gray-700 text-lg leading-relaxed">
+            <div className="max-w-4xl mx-auto">
+              <ScrollReveal animation="fade-up" className="space-y-6">
+                <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl">
+                  <p className="text-gray-700 text-lg md:text-xl leading-relaxed whitespace-pre-line">
                     {portfolioData.about.bio}
                   </p>
                 </div>
