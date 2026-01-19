@@ -186,7 +186,16 @@ export const portfolioData = {
         icon: "🏥",
         pdfPath: "/achievements/Pitch_Day.pdf"
       },
-
+      {
+        id: 2,
+        title: "ICSB 2024 Conference Poster Presentation",
+        organization: "International Conference on Systems Biology",
+        description: "Presented research on 'DeepOMAPNet: Multimodal Graph-based Prediction of Surface Proteins' at the International Conference on Systems Biology 2024. Engaged with the global systems biology community to discuss AI applications in multi-omics.",
+        date: "October 2024",
+        category: "Research",
+        icon: "🔬",
+        pdfPath: "/achievements/ICSB2024_Satya.pdf"
+      }
     ]
   },
 

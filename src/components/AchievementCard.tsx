@@ -59,10 +59,10 @@ export default function AchievementCard({ achievement }: AchievementCardProps) {
     <>
       <div className="group relative h-80 perspective-1000 transition-all duration-500 hover:scale-110 hover:z-10">
         {/* Card Container */}
-        <div 
-          className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${
-            isFlipped ? 'rotate-y-180' : ''
-          } ${achievement.pdfPath ? 'group-hover:rotate-y-180' : ''}`}
+        <div
+          className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d cursor-pointer ${isFlipped ? 'rotate-y-180' : ''
+            } ${achievement.pdfPath ? 'group-hover:rotate-y-180' : ''}`}
+          onClick={handleFlip}
         >
           {/* Front Side - Achievement Details */}
           <div className="absolute inset-0 w-full h-full backface-hidden bg-white rounded-xl shadow-lg overflow-hidden group-hover:shadow-2xl transition-shadow duration-500">
@@ -87,11 +87,11 @@ export default function AchievementCard({ achievement }: AchievementCardProps) {
               <p className="text-gray-600 text-sm mb-4 leading-relaxed flex-grow">
                 {achievement.description}
               </p>
-              
+
               {/* PDF Indicator */}
               {achievement.pdfPath && (
                 <div className="mb-4">
-                  
+
                 </div>
               )}
 
@@ -140,7 +140,7 @@ export default function AchievementCard({ achievement }: AchievementCardProps) {
                     Open in New Tab
                   </button>
                 </div>
-                
+
                 {/* PDF Preview Content - Larger for better visibility */}
                 <div className="flex-1 p-2">
                   <div className="h-full bg-gray-50 rounded-lg overflow-hidden">

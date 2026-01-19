@@ -98,11 +98,7 @@ export default function SatyaPage() {
                 <li key={item.id}>
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className={`relative font-medium transition-all duration-300 hover:text-[#6366F1] 
-                    before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
-                    before:bottom-0 before:left-0 before:bg-[#6366F1] before:origin-top-right
-                    before:transition-transform before:duration-300 hover:before:scale-x-100 hover:before:origin-top-left
-                    ${activeSection === item.id ? 'text-[#6366F1] before:scale-x-100' : 'before:scale-x-0'}`}
+                    className={`nav-link font-medium hover:text-[#6366F1] ${activeSection === item.id ? 'active text-[#6366F1]' : ''}`}
                   >
                     {item.name}
                   </button>
@@ -143,7 +139,7 @@ export default function SatyaPage() {
                 <li key={item.id}>
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className={`block w-full text-left py-2 px-4 rounded-lg transition-all duration-300 hover:bg-[#6366F1] hover:translate-x-2
+                    className={`block w-full text-left py-2 px-4 rounded-lg transition-all duration-300 hover:bg-[#6366F1] hover:text-white hover:translate-x-2
                     ${activeSection === item.id ? 'bg-[#6366F1] text-white' : 'text-[#1E293B]'}`}
                   >
                     {item.name}
