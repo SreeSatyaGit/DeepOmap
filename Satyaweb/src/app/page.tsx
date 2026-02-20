@@ -2,10 +2,9 @@
 
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
-import HeroGallery from "../components/HeroGallery";
 import ScrollReveal from "../components/ScrollReveal";
-import { SkillsGrid } from "../components/SkillBar";
 import AchievementCard from "../components/AchievementCard";
 import ContactForm from "../components/ContactForm";
 import GitHubProjectCard from "../components/GitHubProjectCard";
@@ -17,7 +16,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'github', 'skills', 'achievements', 'contact'];
+      const sections = ['about', 'github', 'achievements', 'contact'];
       const scrollPosition = window.scrollY + 80;
 
       for (const section of sections) {
@@ -70,7 +69,6 @@ export default function Home() {
               {[
                 { name: 'About', id: 'about' },
                 { name: 'GitHub', id: 'github' },
-                { name: 'Skills', id: 'skills' },
                 { name: 'Achievements', id: 'achievements' },
                 { name: 'Contact', id: 'contact' }
               ].map((item) => (
@@ -115,7 +113,6 @@ export default function Home() {
               {[
                 { name: 'About', id: 'about' },
                 { name: 'GitHub', id: 'github' },
-                { name: 'Skills', id: 'skills' },
                 { name: 'Achievements', id: 'achievements' },
                 { name: 'Contact', id: 'contact' }
               ].map((item) => (
@@ -134,16 +131,113 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section id="hero" className="relative h-screen overflow-hidden flex items-center justify-center">
-        <div className="absolute inset-0 z-0">
-          <HeroGallery />
+      {/* About Section (Hero) */}
+      <section id="about" className="relative min-h-screen flex items-center justify-center py-20 px-6 bg-white overflow-hidden">
+        <div className="max-w-6xl w-full z-10">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-20">
+            {/* Left: Profile Picture */}
+            <ScrollReveal animation="slide-right" className="flex-shrink-0">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(99,102,241,0.2)] border-8 border-white group">
+                <Image
+                  src="/images/about/profile.jpg"
+                  alt={portfolioData.hero.name}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#6366F1]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            </ScrollReveal>
+
+            {/* Right: Resume Info */}
+            <div className="flex-1 text-left">
+              <ScrollReveal animation="fade-up">
+                <div className="mb-8">
+                  <p className="text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] inline-block mb-6">
+                    Machine Learning Engineer & Computational Systems Biology Researcher
+                  </p>
+                  <div className="h-1 w-24 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] rounded-full" />
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal animation="fade-up" delay={200}>
+                <div className="flex flex-wrap gap-x-8 gap-y-4 text-gray-600 font-medium mb-10 pb-10 border-b border-gray-100">
+                  <span className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-[#6366F1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    {portfolioData.contact.location}
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-[#6366F1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    {portfolioData.contact.email}
+                  </span>
+                  <a href={portfolioData.contact.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#6366F1] transition-colors">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+                    LinkedIn
+                  </a>
+                  <a href={portfolioData.contact.social.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#6366F1] transition-colors">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+                    GitHub
+                  </a>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal animation="fade-up" delay={400}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                  <div className="space-y-4">
+                    <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#6366F1]">Professional Summary</h2>
+                    <p className="text-gray-700 leading-relaxed text-lg line-clamp-6">
+                      {portfolioData.about.bio}
+                    </p>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#6366F1] mb-4">Core Expertise</h2>
+                      <div className="flex flex-wrap gap-2">
+                        {portfolioData.skills.research.slice(0, 5).map(skill => (
+                          <span key={skill.name} className="px-3 py-1 bg-gray-50 text-gray-700 text-sm font-medium rounded-lg border border-gray-100">
+                            {skill.name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#6366F1] mb-4">Technical Stack</h2>
+                      <div className="flex flex-wrap gap-2">
+                        {portfolioData.skills.tools.slice(0, 5).map(skill => (
+                          <span key={skill.name} className="px-3 py-1 bg-[#6366F1]/5 text-[#6366F1] text-sm font-medium rounded-lg border border-[#6366F1]/10">
+                            {skill.name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal animation="fade-up" delay={600}>
+                <div className="mt-12 flex items-center gap-6">
+                  <button
+                    onClick={() => scrollToSection('contact')}
+                    className="px-10 py-4 bg-gray-900 text-white rounded-2xl font-bold text-lg shadow-xl hover:bg-[#6366F1] hover:-translate-y-1 transition-all duration-300"
+                  >
+                    Get in Touch
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('github')}
+                    className="group px-6 py-4 text-gray-900 font-bold text-lg flex items-center gap-2 hover:text-[#6366F1] transition-colors"
+                  >
+                    View Projects
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                  </button>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
         </div>
 
-
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <button onClick={() => scrollToSection('about')} aria-label="Scroll Down">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white hover:text-[#8183FF] transition-colors duration-300 drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+          <button onClick={() => scrollToSection('github')} aria-label="Scroll Down">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-300 hover:text-[#6366F1] transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </button>
@@ -152,37 +246,7 @@ export default function Home() {
 
       {/* Page Content */}
       <main className="relative z-10">
-        {/* About Section */}
-        <section id="about" className="py-24 bg-[#F8FAFC] transition-all duration-500">
-          <div className="max-w-6xl mx-auto px-6">
-            <ScrollReveal animation="fade-up">
-              <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">About Me</h3>
-                <div className="h-1 w-20 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] mx-auto mb-6 transition-all duration-300"></div>
-              </div>
-            </ScrollReveal>
 
-            <div className="max-w-4xl mx-auto">
-              <ScrollReveal animation="fade-up" className="space-y-6">
-                <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl">
-                  <p className="text-gray-700 text-lg md:text-xl leading-relaxed whitespace-pre-line">
-                    {portfolioData.about.bio}
-                  </p>
-                </div>
-                {portfolioData.about.highlights && portfolioData.about.highlights.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {portfolioData.about.highlights.map((highlight: { label: string; value: string }, idx) => (
-                      <div key={idx} className="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
-                        <div className="text-[#6366F1] text-3xl font-bold mb-2">{highlight.value}</div>
-                        <p className="text-gray-600 font-medium">{highlight.label}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
 
         {/* GitHub Section */}
         <section id="github" className="py-24 bg-white">
@@ -216,35 +280,7 @@ export default function Home() {
 
 
 
-        {/* Skills Section */}
-        <section id="skills" className="py-24 bg-[#F8FAFC]">
-          <div className="max-w-6xl mx-auto px-6">
-            <ScrollReveal animation="fade-up">
-              <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Skills & Technologies</h3>
-                <div className="h-1 w-20 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] mx-auto mb-6"></div>
-                <p className="text-gray-600 max-w-2xl mx-auto">
-                  Technologies and tools I work with to bring ideas to life.
-                </p>
-              </div>
-            </ScrollReveal>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
-              <ScrollReveal animation="fade-up" delay={0}>
-                <SkillsGrid skills={portfolioData.skills.frontend} title="Frontend" />
-              </ScrollReveal>
-              <ScrollReveal animation="fade-up" delay={200}>
-                <SkillsGrid skills={portfolioData.skills.backend} title="Backend" />
-              </ScrollReveal>
-              <ScrollReveal animation="fade-up" delay={400}>
-                <SkillsGrid skills={portfolioData.skills.tools} title="AI/ML Tools" />
-              </ScrollReveal>
-              <ScrollReveal animation="fade-up" delay={600}>
-                <SkillsGrid skills={portfolioData.skills.research} title="Research" />
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
 
         {/* Achievements Section */}
         <section id="achievements" className="py-24 bg-white">
@@ -349,7 +385,6 @@ export default function Home() {
                   {[
                     { name: 'About', id: 'about' },
                     { name: 'GitHub', id: 'github' },
-                    { name: 'Skills', id: 'skills' },
                     { name: 'Achievements', id: 'achievements' },
                     { name: 'Contact', id: 'contact' }
                   ].map((link) => (

@@ -1,6 +1,6 @@
 export const portfolioData = {
   hero: {
-    name: "Satya Nandivada",
+    name: "Satya Bharadwaja Nandivada",
     tagline: "",
     description: "Building deep learning systems that decode cellular complexity and transform single-cell data into actionable discoveries for precision medicine.",
     cta: {

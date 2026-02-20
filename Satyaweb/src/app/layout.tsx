@@ -13,14 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Satya Nandivada ",
+  title: "Satya Bharadwaja Nandivada ",
   description: "Building deep learning systems that decode cellular complexity and transform single-cell data into actionable discoveries for precision medicine.",
   keywords: "AI engineer, computational biology, deep learning, precision medicine, single-cell data, DeepOMAP, GAME LLC",
-  authors: [{ name: "Satya Nandivada" }],
+  authors: [{ name: "Bharadwaja Nandivada" }],
   viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
-    title: "Satya Nandivada ",
+    title: "Satya Bharadwaja Nandivada ",
     description: "Building deep learning systems that decode cellular complexity and transform single-cell data into actionable discoveries for precision medicine",
     type: "website",
     locale: "en_US",
