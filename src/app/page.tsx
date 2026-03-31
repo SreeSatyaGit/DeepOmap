@@ -251,7 +251,7 @@ export default function Home() {
                 { name: 'Kiran Vanaja', title: 'Founder', bio: 'Research Assistant Professor at Roux Institute at Northeastern University' },
                 { name: 'Michaela Reagan', bio: 'MaineHealth Institute of Research' },
                 { name: 'Radha Mukherjee', bio: 'Associate Research Scientist Memorial Slon kettering' },
-                { name: 'Satya Nandivada', title: 'Co-Founder & Chief Executive Officer', bio: 'MS Northeastern University' }
+                { name: 'Satya Nandivada', title: 'Co-Founder', bio: 'MS Northeastern University' }
               ].map((member, idx) => (
                 <div key={idx} className="group relative rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden bg-white">
                   <div className="aspect-square overflow-hidden">
