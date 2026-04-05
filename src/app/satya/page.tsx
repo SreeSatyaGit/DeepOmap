@@ -38,7 +38,7 @@ export default function SatyaPage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'github', 'skills', 'achievements', 'contact'];
+      const sections = ['github', 'skills', 'achievements', 'contact'];
       const scrollPosition = window.scrollY + 80;
 
       for (const section of sections) {
@@ -97,7 +97,6 @@ export default function SatyaPage() {
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
               {[
-                { name: 'About', id: 'about' },
                 { name: 'GitHub', id: 'github' },
                 { name: 'Skills', id: 'skills' },
                 { name: 'Achievements', id: 'achievements' },
@@ -138,7 +137,6 @@ export default function SatyaPage() {
           <nav className="mt-4 pb-4">
             <ul className="space-y-2">
               {[
-                { name: 'About', id: 'about' },
                 { name: 'GitHub', id: 'github' },
                 { name: 'Skills', id: 'skills' },
                 { name: 'Achievements', id: 'achievements' },
@@ -169,7 +167,7 @@ export default function SatyaPage() {
         <div className="absolute inset-0 bg-black/20 z-0"></div>
 
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <button onClick={() => scrollToSection('about')} aria-label="Scroll Down">
+          <button onClick={() => scrollToSection('github')} aria-label="Scroll Down">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white hover:text-[#D1D5DB] transition-colors duration-300 drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
@@ -179,27 +177,6 @@ export default function SatyaPage() {
 
       {/* Page Content */}
       <main className="relative z-10">
-        {/* About Section */}
-        <section id="about" className="py-24 bg-[#F8FAFC] transition-all duration-500">
-          <div className="max-w-6xl mx-auto px-6">
-            <ScrollReveal animation="fade-up">
-              <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">About Me</h3>
-                <div className="h-1 w-20 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] mx-auto mb-6 transition-all duration-300"></div>
-              </div>
-            </ScrollReveal>
-
-            <div className="max-w-4xl mx-auto">
-              <ScrollReveal animation="fade-up" className="space-y-6">
-                <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl transition-all duration-300 hover:shadow-2xl">
-                  <p className="text-gray-700 text-lg md:text-xl leading-relaxed whitespace-pre-line">
-                    {portfolioData.about.bio}
-                  </p>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
 
         {/* GitHub Section */}
         <section id="github" className="py-24 bg-white">
@@ -377,7 +354,7 @@ export default function SatyaPage() {
                 <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                 <ul className="space-y-2">
                   {[
-                    { name: 'About', id: 'about' },
+                    { name: 'GitHub', id: 'github' },
                     { name: 'Resume', id: 'resume' },
                     { name: 'Skills', id: 'skills' },
                     { name: 'Achievements', id: 'achievements' },

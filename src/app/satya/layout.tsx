@@ -6,11 +6,7 @@ export const metadata: Metadata = {
   keywords: "Machine Learning Engineer, ML Engineer, Satya Nandivada, Deep Learning, scRNA-seq, Computational Biology, GNN, PyTorch, Transformers, AI Research, Systems Biology Researcher, DeepOMAPNet",
   authors: [{ name: "Satya Nandivada" }],
   robots: "index, follow",
-  icons: {
-    icon: "/logo/logoDeepOmap.png",
-    shortcut: "/logo/logoDeepOmap.png",
-    apple: "/logo/logoDeepOmap.png",
-  },
+
   openGraph: {
     title: "Satya Nandivada | Machine Learning Engineer & Systems Biology Researcher",
     description: "Machine Learning Engineer and researcher building high-impact intelligent systems at the intersection of Deep Learning, GNNs, scRNA-seq, and Computational Systems Biology.",
