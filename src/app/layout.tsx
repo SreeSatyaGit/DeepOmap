@@ -18,11 +18,7 @@ export const metadata: Metadata = {
   keywords: "cancer diagnosis, AI healthcare, oncology, precision medicine, single-cell sequencing",
   authors: [{ name: "DeepOMAP Team" }],
   robots: "index, follow",
-  icons: {
-    icon: "/logo/logoDeepOmap.png",
-    shortcut: "/logo/logoDeepOmap.png",
-    apple: "/logo/logoDeepOmap.png",
-  },
+
   openGraph: {
     title: "DeepOMAP - Revolutionizing Cancer Care with AI",
     description: "AI-powered diagnostic tool for early cancer detection and personalized treatment planning",
