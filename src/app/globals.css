@@ -5,6 +5,16 @@
   --foreground: #171717;
 }
 
+/* Skills Ticker Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
 /* 3D Flip Card Styles */
 .perspective-1000 {
   perspective: 1000px;

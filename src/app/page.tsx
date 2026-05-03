@@ -161,7 +161,7 @@ export default function Home() {
               <span className="block animate-slide-up">Revolutionizing Cancer Care</span>
               <span className="block mt-2 text-[#0EA5E9] animate-slide-up-delay">with Artificial Intelligence</span>
             </h2>
-            <p className="mt-5 text-lg md:text-xl text-[#334155] max-w-2xl font-light animate-fade-in-delay">
+            <p className="mt-5 text-lg md:text-xl text-[#334155] max-w-2xl font-light animate-fade-in-delay md:translate-x-8">
               Our AI-powered diagnostic tool assists oncologists in early detection and personalized treatment planning for improved patient outcomes.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6 animate-fade-in-delay-2">
@@ -362,24 +362,38 @@ export default function Home() {
               <div className="space-y-16">
                 {[
                   {
+                    title: 'Accepted to NIH Insite Accelerator Program',
+                    date: 'May 2026',
+                    result: 'Clinical Validation & Scale',
+                    description: 'Selected for the NIH Insite Accelerator program starting May 15, 2026, to accelerate clinical translation and market readiness.',
+                    align: 'left'
+                  },
+                  {
+                    title: 'NSF Grant for Customer Discovery',
+                    date: 'Feb 2026',
+                    result: 'Extended Market Research',
+                    description: 'Awarded an NSF grant to extend customer discovery efforts, working with mentors from the MIT Entrepreneurship Hub.',
+                    align: 'right'
+                  },
+                  {
                     title: 'Selected for MIT NSF I-Corps Program',
                     date: 'Mar 2025',
                     result: 'Customer discovery and validation',
                     description: 'Developed initial prototype and conducted user interviews.',
-                    align: 'right'
+                    align: 'left'
                   },
                   {
                     title: 'DeepOMAP Founded',
                     date: 'Jan 2025',
                     result: 'Registered as Maine-based LLC',
-                    align: 'left'
+                    align: 'right'
                   },
                   {
                     title: 'Early Minimum Viable Product (MVP) Launched',
                     date: 'May 2024',
                     result: 'Validating and improving AI algorithms',
                     description: 'Developed initial foundational model for cancer detection and explainable AI.',
-                    align: 'right'
+                    align: 'left'
                   }
                 ].map((item, idx) => (
                   <div key={idx} className="relative flex items-center justify-between">

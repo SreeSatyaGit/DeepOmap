@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import HeroGallery from "../../components/HeroGallery";
 import ScrollReveal from "../../components/ScrollReveal";
 import GitHubProjectCard from "../../components/GitHubProjectCard";
-import { SkillsGrid } from "../../components/SkillBar";
 import AchievementCard from "../../components/AchievementCard";
 import ContactForm from "../../components/ContactForm";
 import { portfolioData } from "../../data/portfolio";
@@ -201,33 +200,28 @@ export default function SatyaPage() {
           </div>
         </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="py-24 bg-[#F8FAFC]">
-          <div className="max-w-6xl mx-auto px-6">
-            <ScrollReveal animation="fade-up">
-              <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Skills & Technologies</h3>
-                <div className="h-1 w-20 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] mx-auto mb-6"></div>
-                <p className="text-gray-600 max-w-2xl mx-auto">
-                  Technologies and tools I work with to bring ideas to life.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
-              <ScrollReveal animation="fade-up" delay={0}>
-                <SkillsGrid skills={portfolioData.skills.frontend} title="Frontend" />
-              </ScrollReveal>
-              <ScrollReveal animation="fade-up" delay={200}>
-                <SkillsGrid skills={portfolioData.skills.backend} title="Backend" />
-              </ScrollReveal>
-              <ScrollReveal animation="fade-up" delay={400}>
-                <SkillsGrid skills={portfolioData.skills.tools} title="AI/ML Tools" />
-              </ScrollReveal>
-              <ScrollReveal animation="fade-up" delay={600}>
-                <SkillsGrid skills={portfolioData.skills.research} title="Research" />
-              </ScrollReveal>
-            </div>
+        {/* Skills Ticker */}
+        <section id="skills" className="py-10 bg-[#0F172A] overflow-hidden">
+          <div className="flex whitespace-nowrap">
+            {(() => {
+              const allSkills = [
+                ...portfolioData.skills.frontend,
+                ...portfolioData.skills.backend,
+                ...portfolioData.skills.tools,
+                ...portfolioData.skills.research,
+              ];
+              const items = [...allSkills, ...allSkills];
+              return (
+                <div className="animate-marquee flex shrink-0">
+                  {items.map((skill, i) => (
+                    <span key={i} className="inline-flex items-center gap-2 px-6 py-3 text-white text-sm font-medium tracking-wide">
+                      <span className="text-[#6366F1]">◆</span>
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+              );
+            })()}
           </div>
         </section>
 
